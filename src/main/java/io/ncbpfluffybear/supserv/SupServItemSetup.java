@@ -1,6 +1,7 @@
 package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.ncbpfluffybear.supserv.items.CargoWand;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
@@ -49,6 +50,13 @@ public class SupServItemSetup {
                 null, null, null
             }, new ItemStack(Material.WITHER_SKELETON_SKULL)
         ).register(plugin);
+
+        new CargoWand(SupServItems.SUPSERV_CATEGORY, SupServItems.CARGO_WAND,
+            RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.CARGO_MOTOR, new ItemStack(Material.ENDER_EYE), SlimefunItems.ELECTRIC_MOTOR,
+                new ItemStack(Material.ENDER_EYE), new ItemStack(Material.COMPASS), new ItemStack(Material.ENDER_EYE),
+                SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.ENDER_EYE), SlimefunItems.CARGO_MOTOR
+        }).register(plugin);
 
     }
 
