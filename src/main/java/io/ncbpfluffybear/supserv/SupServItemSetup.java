@@ -50,6 +50,32 @@ public class SupServItemSetup {
             }, new ItemStack(Material.WITHER_SKELETON_SKULL)
         ).register(plugin);
 
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.CONDENSED_NETHER_STAR_BLOCK,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            Utils.build3x3Recipe(new ItemStack(Material.NETHER_STAR))
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.INGOT_OF_AFTERLIFE,
+            RecipeType.MAGIC_WORKBENCH,
+            Utils.build3x3Recipe(SlimefunItems.ESSENCE_OF_AFTERLIFE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_ESSENCE, RecipeType.ANCIENT_ALTAR,
+            new ItemStack[] {
+                SlimefunItems.ENDER_LUMP_3, new ItemStack(Material.DRAGON_BREATH), SlimefunItems.ENDER_LUMP_3,
+                new ItemStack(Material.DRAGON_BREATH), new ItemStack(Material.NETHER_STAR), new ItemStack(Material.DRAGON_BREATH),
+                SlimefunItems.ENDER_LUMP_3, new ItemStack(Material.DRAGON_BREATH), SlimefunItems.ENDER_LUMP_3}
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_EGG,
+            RecipeType.ANCIENT_ALTAR,
+            new ItemStack[] {
+                SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE,
+                SupServItems.DRAGON_ESSENCE, SupServItems.CONDENSED_NETHER_STAR_BLOCK, SupServItems.DRAGON_ESSENCE,
+                SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE
+            }, new ItemStack(Material.DRAGON_EGG)
+        ).register(plugin);
+
     }
 
 }

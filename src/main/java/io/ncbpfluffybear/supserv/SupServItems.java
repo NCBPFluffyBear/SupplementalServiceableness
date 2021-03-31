@@ -45,7 +45,31 @@ public class SupServItems {
         "&9Suggested by CrystalNeko"
     );
 
+    public static final SlimefunItemStack CONDENSED_NETHER_STAR_BLOCK = new SlimefunItemStack("CONDENSED_NETHER_STAR_BLOCK",
+        Material.QUARTZ_BRICKS,
+        "&f&lCondensed Nether Star Block",
+        "",
+        "&7Many &eNether Stars &7smashed together"
+    );
+
+    public static final SlimefunItemStack INGOT_OF_AFTERLIFE = new SlimefunItemStack("INGOT_OF_AFTERLIFE",
+        Material.NETHER_BRICK,
+        "&4Ingot of Afterlife",
+        "",
+        "&7Condensed &4Essence of Afterlife"
+    );
+
+    public static final SlimefunItemStack DRAGON_ESSENCE = new SlimefunItemStack("DRAGON_ESSENCE",
+        Material.DRAGON_BREATH,
+        "&4&lDragon Essence",
+        "",
+        "&7The essence of a &4&lDragon &7captured in a bottle"
+    );
+
     public static final SlimefunItemStack WITHER_SKELETON_SKULL = new SlimefunItemStack("WITHER_SKELETON_SKULL",
         Material.WITHER_SKELETON_SKULL, null);
+
+    public static final SlimefunItemStack DRAGON_EGG = new SlimefunItemStack("DRAGON_EGG",
+        Material.DRAGON_EGG, null);
 
 }
