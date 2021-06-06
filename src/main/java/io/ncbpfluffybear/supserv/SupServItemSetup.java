@@ -83,7 +83,7 @@ public class SupServItemSetup {
                         SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
                         new ItemStack(Material.BONE_BLOCK), new ItemStack(Material.IRON_HOE), new ItemStack(Material.BONE_BLOCK),
                         SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
-                }, new SlimefunItemStack(SupServItems.FARMERS_HOE, 1)
+                }
         ).register(plugin);
 
     }
