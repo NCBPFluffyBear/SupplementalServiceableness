@@ -74,9 +74,10 @@ public class SupServItems {
 
     public static final SlimefunItemStack FARMERS_HOE = new SlimefunItemStack("FARMERS_HOE",
             Material.IRON_HOE,
-            "&3Farmers&8Hoe",
+            "&3Farmers Hoe",
             "",
-            "&7Makes sure harvested plots get reseeded, at the cost of durability",
+            "&7Makes sure harvested plots get reseeded, ",
+            "at the cost of durability",
             "",
             "&9Suggested by Caveman"
     );
