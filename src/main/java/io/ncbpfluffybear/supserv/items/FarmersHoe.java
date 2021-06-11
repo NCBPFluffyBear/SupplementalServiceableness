@@ -60,9 +60,6 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
         if (b.getRelative(0, 1, 0).getType() != b.getType()) { //to prevent people farming 1 high cactus/sugarcane
           return;
         }
-        if (getCrop(b.getType()) != b.getRelative(0, 1, 0).getType()) {
-          b.breakNaturally(item);
-        }
         b.getRelative(0, 1, 0).breakNaturally(item);
         b.setType(getCrop(pastMat));
         damageItem(p, item);
