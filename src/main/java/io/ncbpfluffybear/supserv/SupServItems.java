@@ -77,7 +77,7 @@ public class SupServItems {
             "&3Farmers Hoe",
             "",
             "&7Makes sure harvested plots get reseeded, ",
-            "at the cost of durability",
+            "&7at the cost of durability",
             "",
             "&9Suggested by Caveman"
     );

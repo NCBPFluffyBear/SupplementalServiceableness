@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.CropState;
@@ -46,6 +47,10 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
       }
 
       Block b = e.getClickedBlock().get();
+      if(BlockStorage.check(b) != null) {
+        return;
+      }
+
       if (FARMABLES.contains(b.getType())) {
         return;
       }
