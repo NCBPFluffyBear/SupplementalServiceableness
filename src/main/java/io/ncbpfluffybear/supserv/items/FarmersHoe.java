@@ -7,6 +7,7 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
+import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.CropState;
@@ -18,18 +19,19 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable, DamageableItem {
 
-  static final List<Material> BREAKONLY = Arrays.asList(Material.MELON, Material.PUMPKIN);
-  static final List<Material> FARMABLES = Arrays.asList(Material.DIRT, Material.GRASS_BLOCK, Material.COARSE_DIRT);
-  static final List<Material> TALLPLANTS = Arrays.asList(Material.SUGAR_CANE, Material.CACTUS, Material.BAMBOO,
-          Material.CHORUS_PLANT);
+  private static final Set<Material> BREAK_ONLY = new HashSet<>(Arrays.asList(Material.MELON, Material.PUMPKIN));
+  private static final Set<Material> FARMABLES = new HashSet<>(Arrays.asList(Material.DIRT,
+          Material.GRASS_BLOCK, Material.COARSE_DIRT));
+  private static final Set<Material> TALL_PLANTS = new HashSet<>(Arrays.asList(Material.SUGAR_CANE,
+          Material.CACTUS, Material.BAMBOO, Material.CHORUS_PLANT));
 
   public FarmersHoe(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
-
   }
 
   @Nonnull
@@ -40,33 +42,36 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
       Player p = e.getPlayer();
       ItemStack item = e.getItem();
 
-
       if (!e.getClickedBlock().isPresent()) {
         return;    // Check if clicked block is null > return
       }
+
       Block b = e.getClickedBlock().get();
+      if(BlockStorage.check(b) != null) {
+        return;
+      }
+
       if (FARMABLES.contains(b.getType())) {
         return;
       }
-      e.cancel();
-      if (!SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), b,
-              ProtectableAction.BREAK_BLOCK)) {// Check if player may 'break' the block to harvest
-        return;
-      }
-      Material pastMat = b.getType();
 
-      if (TALLPLANTS.contains(b.getType())) { // type is growing vertically
+      e.cancel();
+      if (!SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), b, ProtectableAction.BREAK_BLOCK)) {
+        return;    // Check if player may 'break' the block to harvest
+      }
+
+      Material pastMat = b.getType();
+      if (TALL_PLANTS.contains(b.getType())) { // type is growing vertically
         if (b.getRelative(0, 1, 0).getType() != b.getType()) { //to prevent people farming 1 high cactus/sugarcane
           return;
         }
-        b.breakNaturally(item);
         b.getRelative(0, 1, 0).breakNaturally(item);
         b.setType(getCrop(pastMat));
         damageItem(p, item);
         return;
       }
 
-      if (BREAKONLY.contains(b.getType())) { // type is growing vertically
+      if (BREAK_ONLY.contains(b.getType())) { // type is growing vertically
         b.breakNaturally(item);
         damageItem(p, item);
         return;
@@ -83,19 +88,13 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
 
       b.breakNaturally(item);
       b.setType(e.getClickedBlock().get().getType());
-
       crop.setAge(CropState.SEEDED.ordinal());
       b.setBlockData(crop, false);
       damageItem(p, item);
     };
   }
 
-  @Override
-  public boolean isDamageable() {
-    return true;
-  }
-
-  Material getCrop(Material mat) {
+  private Material getCrop(Material mat) {
     switch (mat) {
       case BAMBOO:
         return Material.BAMBOO_SAPLING;
@@ -104,5 +103,10 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
       default:
         return mat;
     }
+  }
+
+  @Override
+  public boolean isDamageable() {
+    return true;
   }
 }
