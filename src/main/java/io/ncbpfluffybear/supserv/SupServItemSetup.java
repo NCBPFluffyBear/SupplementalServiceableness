@@ -5,6 +5,7 @@ import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -76,42 +77,42 @@ public class SupServItemSetup {
             }, new ItemStack(Material.DRAGON_EGG)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(new ItemStack(Material.COBBLESTONE))
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
-        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
                 Utils.build3x3Recipe(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
