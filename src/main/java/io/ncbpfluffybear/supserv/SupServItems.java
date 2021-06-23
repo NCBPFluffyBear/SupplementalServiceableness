@@ -72,4 +72,75 @@ public class SupServItems {
     public static final SlimefunItemStack DRAGON_EGG = new SlimefunItemStack("DRAGON_EGG",
         Material.DRAGON_EGG, null);
 
+    public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&f&lCompressed Cobblestone",
+            "",
+            "&7Contains 9 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack DOUBLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("DOUBLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&f&lDouble Compressed Cobblestone",
+            "",
+            "&7Contains 81 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack TRIPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("TRIPLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&7&lTriple Compressed Cobblestone",
+            "",
+            "&7Contains 729 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack QUADRUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUADRUPLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&7&lQuadruple Compressed Cobblestone",
+            "",
+            "&7Contains 6,561 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack QUINTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUINTUPLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&7&lQuintuple Compressed Cobblestone",
+            "",
+            "&7Contains 59,049 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack SEXTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEXTUPLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&8&lSextuple Compressed Cobblestone",
+            "",
+            "&7Contains 531,441 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack SEPTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEPTUPLE_COMPRESSED_COBBLESTONE",
+            Material.COBBLESTONE,
+            "&8&lSeptuple Compressed Cobblestone",
+            "",
+            "&7Contains 4,782,969 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack OCTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("OCTUPLE_COMPRESSED_COBBLESTONE",
+            "44cc1ccc75d0f724af8a5fe273edaf4c6d5951f9e4d038f9f16e4f2673ce3833",
+            "&8&lOctuple Compressed Cobblestone",
+            "",
+            "&7Contains 43,046,721 Cobblestone",
+            "",
+            "&9Suggested by Skizzles"
+    );
 }
