@@ -76,6 +76,45 @@ public class SupServItemSetup {
             }, new ItemStack(Material.DRAGON_EGG)
         ).register(plugin);
 
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(new ItemStack(Material.COBBLESTONE))
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
     }
 
 }
