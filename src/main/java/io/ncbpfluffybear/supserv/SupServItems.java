@@ -136,7 +136,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack OCTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("OCTUPLE_COMPRESSED_COBBLESTONE",
-            "44cc1ccc75d0f724af8a5fe273edaf4c6d5951f9e4d038f9f16e4f2673ce3833",
+            Material.COBBLESTONE,
             "&8&lOctuple Compressed Cobblestone",
             "",
             "&7Contains 43,046,721 Cobblestone",
