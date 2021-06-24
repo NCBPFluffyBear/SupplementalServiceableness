@@ -3,6 +3,7 @@ package io.ncbpfluffybear.supserv;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
+import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
@@ -72,4 +73,76 @@ public class SupServItems {
     public static final SlimefunItemStack DRAGON_EGG = new SlimefunItemStack("DRAGON_EGG",
         Material.DRAGON_EGG, null);
 
+    public static final SlimefunItemStack WATERING_CAN = new SlimefunItemStack("WATERING_CAN",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
+    public static final SlimefunItemStack WATERING_CAN_IRON = new SlimefunItemStack("WATERING_CAN_IRON",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [IRON]",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
+    public static final SlimefunItemStack WATERING_CAN_GOLD = new SlimefunItemStack("WATERING_CAN_GOLD",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [GOLD]",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
+    public static final SlimefunItemStack WATERING_CAN_DIAMOND = new SlimefunItemStack("WATERING_CAN_DIAMOND",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [DIAMOND]",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
+    public static final SlimefunItemStack WATERING_CAN_EMERALD = new SlimefunItemStack("WATERING_CAN_EMERALD",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [EMERALD]",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
+    public static final SlimefunItemStack WATERING_CAN_NETHERITE = new SlimefunItemStack("WATERING_CAN_NETHERITE",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [NETHERITE]",
+            "",
+            "&fWaters Plants",
+            "",
+            "&7> &eRight Click &7a water to fill your watering can",
+            "&7> &eRight Click &7a plant to speed up growth.",
+            "&7> &eRight Click &7a player to slow them down",
+            "",
+            "&aUses Left: &e0"
+    );
 }

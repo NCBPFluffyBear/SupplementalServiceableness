@@ -1,13 +1,14 @@
-package io.ncbpfluffybear.fluffymachines.items.tools;
+package io.ncbpfluffybear.supserv.items;
 
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.ncbpfluffybear.supserv.SupServPlugin;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
-import io.ncbpfluffybear.fluffymachines.FluffyMachines;
-import io.ncbpfluffybear.fluffymachines.utils.Constants;
-import io.ncbpfluffybear.fluffymachines.utils.Utils;
+import io.ncbpfluffybear.supserv.SupServPlugin;
+import io.ncbpfluffybear.supserv.utils.Constants;
+import io.ncbpfluffybear.supserv.utils.Utils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
@@ -51,7 +52,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
 
   private static final int USE_INDEX = 7;
   private static final int MAX_SUGAR_GROW_HEIGHT = 5;
-  private static final NamespacedKey usageKey = new NamespacedKey(FluffyMachines.getInstance(), "watering_can_usage");
+  private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
   private final canType canType;
   private static final int STONE_SIZE = 64;
