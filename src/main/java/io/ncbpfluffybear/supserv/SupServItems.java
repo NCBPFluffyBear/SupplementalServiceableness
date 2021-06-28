@@ -143,4 +143,14 @@ public class SupServItems {
             "",
             "&9Suggested by Skizzles"
     );
+
+    public static final SlimefunItemStack CARGO_WAND = new SlimefunItemStack("CARGO_WAND",
+        Material.SEA_PICKLE,
+        "&9Cargo Wand",
+        "",
+        "&eRight Click &7to copy cargo node settings",
+        "&eLeft Click &7to paste cargo node settings",
+        "&eSneak and Left Click &7to wipe settings"
+    );
+
 }
