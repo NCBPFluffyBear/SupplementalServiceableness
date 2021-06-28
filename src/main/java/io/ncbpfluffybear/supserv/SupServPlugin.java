@@ -2,6 +2,7 @@ package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
+import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -19,13 +20,6 @@ public class SupServPlugin extends JavaPlugin implements SlimefunAddon {
 
         if (cfg.getBoolean("options.auto-update")) {
             // You could start an Auto-Updater for example
-        }
-
-        File lassoFolder = new File(this.getDataFolder().getAbsolutePath() +
-            "\\LassoData");
-
-        if (!lassoFolder.exists() && lassoFolder.mkdir()) {
-            Bukkit.getLogger().log(Level.INFO, "Lasso folder created.");
         }
 
         instance = this;

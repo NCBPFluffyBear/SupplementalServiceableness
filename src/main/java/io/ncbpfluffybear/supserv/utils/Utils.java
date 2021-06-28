@@ -1,10 +1,7 @@
 package io.ncbpfluffybear.supserv.utils;
 
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
-import io.ncbpfluffybear.supserv.SupServItems;
 import me.mrCookieSlime.Slimefun.cscorelib2.chat.ChatColors;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 

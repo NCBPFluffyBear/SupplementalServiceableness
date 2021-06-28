@@ -6,6 +6,7 @@ import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
@@ -49,6 +50,72 @@ public class SupServItemSetup {
                 SupServItems.FRAGMENTED_WITHER_SKELETON_SKULL, SupServItems.FRAGMENTED_WITHER_SKELETON_SKULL, null,
                 null, null, null
             }, new ItemStack(Material.WITHER_SKELETON_SKULL)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.CONDENSED_NETHER_STAR_BLOCK,
+            RecipeType.ENHANCED_CRAFTING_TABLE,
+            Utils.build3x3Recipe(new ItemStack(Material.NETHER_STAR))
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.INGOT_OF_AFTERLIFE,
+            RecipeType.MAGIC_WORKBENCH,
+            Utils.build3x3Recipe(SlimefunItems.ESSENCE_OF_AFTERLIFE)
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_ESSENCE, RecipeType.ANCIENT_ALTAR,
+            new ItemStack[] {
+                SlimefunItems.ENDER_LUMP_3, new ItemStack(Material.DRAGON_BREATH), SlimefunItems.ENDER_LUMP_3,
+                new ItemStack(Material.DRAGON_BREATH), new ItemStack(Material.NETHER_STAR), new ItemStack(Material.DRAGON_BREATH),
+                SlimefunItems.ENDER_LUMP_3, new ItemStack(Material.DRAGON_BREATH), SlimefunItems.ENDER_LUMP_3}
+        ).register(plugin);
+
+        new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_EGG,
+            RecipeType.ANCIENT_ALTAR,
+            new ItemStack[] {
+                SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE,
+                SupServItems.DRAGON_ESSENCE, SupServItems.CONDENSED_NETHER_STAR_BLOCK, SupServItems.DRAGON_ESSENCE,
+                SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE
+            }, new ItemStack(Material.DRAGON_EGG)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(new ItemStack(Material.COBBLESTONE))
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE)
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR,
+                Utils.build3x3Recipe(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE)
         ).register(plugin);
 
         new CargoWand(SupServItems.SUPSERV_CATEGORY, SupServItems.CARGO_WAND,
