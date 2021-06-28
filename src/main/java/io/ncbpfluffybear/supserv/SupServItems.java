@@ -73,7 +73,7 @@ public class SupServItems {
         Material.DRAGON_EGG, null);
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTdmOTk5NzE2MDFlZTc3NjY2YzA1OTIzZjM0MWE4OWNlYmExMzU3NTMyMjc5ZTM5MjZhZWE3OWY1NWQyNjNhMCJ9fX0=",
             "&f&lCompressed Cobblestone",
             "",
             "&7Contains 9 Cobblestone",
@@ -82,7 +82,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack DOUBLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("DOUBLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOGM5NjIyMGRjN2I4NWI5MDlhNTc1YWNmYWZmYjA2YzhjODc4YTJkNTE1ZGJlYzI4YmYyNjgwMzQ2YWNmMTczZiJ9fX0=",
             "&f&lDouble Compressed Cobblestone",
             "",
             "&7Contains 81 Cobblestone",
@@ -91,7 +91,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack TRIPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("TRIPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWUyYjA5MjRhYTJiNDI0ZTBmZjY2MTZhOTNjOGVmNDg3MDU3NzQ1YWYxYWE1Y2QyMjNjNTQxZWJkM2E2ODhhMyJ9fX0=",
             "&7&lTriple Compressed Cobblestone",
             "",
             "&7Contains 729 Cobblestone",
@@ -100,7 +100,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack QUADRUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUADRUPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMzdmYmE2YmEwZTE3MDA3YWUxN2NiMWI0OGY0OWMyNmEwMjU2YTdkMmU4ODg0YzNjZjA3YWFlZGUwMjVlYmI3MiJ9fX0=",
             "&7&lQuadruple Compressed Cobblestone",
             "",
             "&7Contains 6,561 Cobblestone",
@@ -109,7 +109,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack QUINTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUINTUPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjVhODY1NDFlZDljZDI5ZmNhYzBhODAxY2VjZTljMjdhMDA1NDllY2Y0MWM0NmRlZDMwMGJiMDEyZGE1OTM5MCJ9fX0=",
             "&7&lQuintuple Compressed Cobblestone",
             "",
             "&7Contains 59,049 Cobblestone",
@@ -118,7 +118,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack SEXTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEXTUPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOWVjNjlhNzM0NTA4MjBiYjk3YjUxNTA5YjMzNGViMGQ5ZjZjMWY4YTlkNTE1ZmFkNTdmM2I3NjE5YWEzYWY5YSJ9fX0=",
             "&8&lSextuple Compressed Cobblestone",
             "",
             "&7Contains 531,441 Cobblestone",
@@ -127,7 +127,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack SEPTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEPTUPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjZlYmMzMGFhMmVkZmExOTkxYTViYTc3ZTJmMmNiOWQ3Mzk4ZDM3NWJlOTliMWMxZWZmN2FlZjJkZGRmNzM5OSJ9fX0=",
             "&8&lSeptuple Compressed Cobblestone",
             "",
             "&7Contains 4,782,969 Cobblestone",
@@ -136,7 +136,7 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack OCTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("OCTUPLE_COMPRESSED_COBBLESTONE",
-            Material.COBBLESTONE,
+            "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODExYjE5YjA2ODEzZDAzODhlYWUwM2JiMmM5NzYyMWM0OGE3OGIzNGY3MzVhOTI1Nzg3OTM0YTZjMzA0MTk5YSJ9fX0=",
             "&8&lOctuple Compressed Cobblestone",
             "",
             "&7Contains 43,046,721 Cobblestone",
