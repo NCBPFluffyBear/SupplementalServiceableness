@@ -156,22 +156,22 @@ public class SupServItems {
                 6, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), DOUBLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                9, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), TRIPLE_COMPRESSED_COBBLESTONE
+                9, new SlimefunItemStack(DOUBLE_COMPRESSED_COBBLESTONE, 9), TRIPLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                12, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), QUADRUPLE_COMPRESSED_COBBLESTONE
+                12, new SlimefunItemStack(TRIPLE_COMPRESSED_COBBLESTONE, 9), QUADRUPLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                15, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), QUINTUPLE_COMPRESSED_COBBLESTONE
+                15, new SlimefunItemStack(QUADRUPLE_COMPRESSED_COBBLESTONE, 9), QUINTUPLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                18, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), SEXTUPLE_COMPRESSED_COBBLESTONE
+                18, new SlimefunItemStack(QUINTUPLE_COMPRESSED_COBBLESTONE, 9), SEXTUPLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                21, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), SEPTUPLE_COMPRESSED_COBBLESTONE
+                21, new SlimefunItemStack(SEXTUPLE_COMPRESSED_COBBLESTONE, 9), SEPTUPLE_COMPRESSED_COBBLESTONE
         );
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                24, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), OCTUPLE_COMPRESSED_COBBLESTONE
+                24, new SlimefunItemStack(SEPTUPLE_COMPRESSED_COBBLESTONE, 9), OCTUPLE_COMPRESSED_COBBLESTONE
         );
     }
 }
