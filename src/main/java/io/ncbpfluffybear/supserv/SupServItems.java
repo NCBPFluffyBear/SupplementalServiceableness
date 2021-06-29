@@ -150,7 +150,28 @@ public class SupServItems {
 
     static {
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
-                5, new ItemStack(Material.COBBLESTONE, 9), COMPRESSED_COBBLESTONE
+                3, new ItemStack(Material.COBBLESTONE, 9), COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                6, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), DOUBLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                9, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), TRIPLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                12, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), QUADRUPLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                15, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), QUINTUPLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                18, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), SEXTUPLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                21, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), SEPTUPLE_COMPRESSED_COBBLESTONE
+        );
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                24, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9), OCTUPLE_COMPRESSED_COBBLESTONE
         );
     }
 }
