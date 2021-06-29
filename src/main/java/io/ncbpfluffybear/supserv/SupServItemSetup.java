@@ -79,42 +79,42 @@ public class SupServItemSetup {
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(new ItemStack(Material.COBBLESTONE))
+                new ItemStack[] {new ItemStack(Material.COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR,
-                Utils.build3x3Recipe(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE)
+                new ItemStack[] {new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)}
         ).register(plugin);
 
     }
