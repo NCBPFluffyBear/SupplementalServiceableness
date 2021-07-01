@@ -43,16 +43,8 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-  public final ItemSetting<Integer> maxUses = new ItemSetting<>(this, "max-uses", 10);
-  public final ItemSetting<Double> sugarCaneSuccessChance = new ItemSetting<>(this, "sugar-cane-success-chance",
-          0.3);
-  public final ItemSetting<Double> cropSuccessChance = new ItemSetting<>(this, "crop-success-chance", 0.3);
-  public final ItemSetting<Double> treeSuccessChance = new ItemSetting<>(this, "tree-success-chance", 0.3);
-  public final ItemSetting<Double> exoticGardenSuccessChance = new ItemSetting<>(this, "exotic-garden-success-chance", 0.3);
-
   private static final int USE_INDEX = 7;
   private static final int MAX_SUGAR_GROW_HEIGHT = 5;
-  private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
   private final canType canType;
   private static final int STONE_SIZE = 64;
@@ -61,6 +53,15 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   private static final int DIAMOND_SIZE = 400;
   private static final int EMERALD_SIZE = 650;
   private static final int NETHERITE_SIZE = 1000;
+
+  public final ItemSetting<Integer> maxUses = new ItemSetting<>(this, "max-uses", 10);
+  public final ItemSetting<Double> sugarCaneSuccessChance = new ItemSetting<>(this, "sugar-cane-success-chance",
+          0.3);
+  public final ItemSetting<Double> cropSuccessChance = new ItemSetting<>(this, "crop-success-chance", 0.3);
+  public final ItemSetting<Double> treeSuccessChance = new ItemSetting<>(this, "tree-success-chance", 0.3);
+  public final ItemSetting<Double> exoticGardenSuccessChance = new ItemSetting<>(this, "exotic-garden-success-chance", 0.3);
+
+  private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
   public WateringCan(Category category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size) {
