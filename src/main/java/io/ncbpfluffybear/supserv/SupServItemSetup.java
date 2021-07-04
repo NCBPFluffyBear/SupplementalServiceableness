@@ -102,7 +102,7 @@ public class SupServItemSetup {
                         SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
                         SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.GLOWSTONE), SlimefunItems.WITHER_PROOF_GLASS,
                         SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SEA_LANTERN, 16)
+                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_GLOWSTONE, 16)
         ).register(plugin);
 
         new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SHROOMLIGHT,
@@ -111,7 +111,7 @@ public class SupServItemSetup {
                         SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
                         SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.SHROOMLIGHT), SlimefunItems.WITHER_PROOF_GLASS,
                         SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
-                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SEA_LANTERN, 16)
+                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SHROOMLIGHT, 16)
         ).register(plugin);
     }
 
