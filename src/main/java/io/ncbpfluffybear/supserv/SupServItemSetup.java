@@ -1,6 +1,7 @@
 package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
@@ -86,6 +87,32 @@ public class SupServItemSetup {
                 }
         ).register(plugin);
 
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SEA_LANTERN,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                        SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.SEA_LANTERN), SlimefunItems.WITHER_PROOF_GLASS,
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SEA_LANTERN, 16)
+        ).register(plugin);
+
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_GLOWSTONE,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                        SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.GLOWSTONE), SlimefunItems.WITHER_PROOF_GLASS,
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SEA_LANTERN, 16)
+        ).register(plugin);
+
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SHROOMLIGHT,
+                RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[]{
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                        SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.SHROOMLIGHT), SlimefunItems.WITHER_PROOF_GLASS,
+                        SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SEA_LANTERN, 16)
+        ).register(plugin);
     }
 
 }

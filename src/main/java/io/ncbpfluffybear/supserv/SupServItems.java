@@ -6,6 +6,8 @@ import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 
+import java.util.Locale;
+
 public class SupServItems {
 
     private SupServItems() {}
@@ -81,4 +83,32 @@ public class SupServItems {
             "",
             "&9Suggested by Caveman"
     );
+    public static final SlimefunItemStack WITHER_PROOF_SEA_LANTERN = new SlimefunItemStack("WP_SEA_LANTERN",
+            Material.SEA_LANTERN,
+            "&3Wither proof Sea Lantern",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by GamingRabbit17"
+    );
+    public static final SlimefunItemStack WITHER_PROOF_GLOWSTONE = new SlimefunItemStack("WP_GLOWSTONE",
+            Material.GLOWSTONE,
+            "&3Wither proof Glowstone",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by GamingRabbit17"
+    );
+    public static final SlimefunItemStack WITHER_PROOF_SHROOMLIGHT = new SlimefunItemStack("WP_SHROOMLIGHT",
+            Material.SHROOMLIGHT,
+            "&3Wither proof Shroomlight",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by GamingRabbit17"
+    );
+
 }
