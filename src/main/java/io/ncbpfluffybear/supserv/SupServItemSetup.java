@@ -1,12 +1,15 @@
 package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.items.WateringCan;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -34,7 +37,7 @@ public class SupServItemSetup {
                 SlimefunItems.COMPRESSED_CARBON, new ItemStack(Material.SKELETON_SKULL),
                 SlimefunItems.COMPRESSED_CARBON,
                 SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON, SlimefunItems.COMPRESSED_CARBON
-            }).register(plugin);
+        }).register(plugin);
 
         new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.FRAGMENTED_WITHER_SKELETON_SKULL,
             RecipeType.MAGIC_WORKBENCH,
@@ -119,6 +122,54 @@ public class SupServItemSetup {
                 null, null, null
         }, WateringCan.canType.NETHERITE).register(plugin);
 
+
+        new FarmersHoe(SupServItems.SUPSERV_CATEGORY, SupServItems.FARMERS_HOE, RecipeType.ANCIENT_ALTAR,
+            new ItemStack[] {
+                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
+                new ItemStack(Material.BONE_BLOCK), new ItemStack(Material.IRON_HOE), new ItemStack(Material.BONE_BLOCK),
+                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE
+            }
+        ).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                    new ItemStack(Material.COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                    new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                    new CustomItem(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
     }
 
