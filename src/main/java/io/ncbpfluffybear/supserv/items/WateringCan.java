@@ -54,20 +54,28 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   private static final int EMERALD_SIZE = 650;
   private static final int NETHERITE_SIZE = 1000;
 
-  public final ItemSetting<Integer> maxUses = new ItemSetting<>(this, "max-uses", 10);
   public final ItemSetting<Double> sugarCaneSuccessChance = new ItemSetting<>(this, "sugar-cane-success-chance",
           0.3);
   public final ItemSetting<Double> cropSuccessChance = new ItemSetting<>(this, "crop-success-chance", 0.3);
   public final ItemSetting<Double> treeSuccessChance = new ItemSetting<>(this, "tree-success-chance", 0.3);
   public final ItemSetting<Double> exoticGardenSuccessChance = new ItemSetting<>(this, "exotic-garden-success-chance", 0.3);
-
+  
   private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
   public WateringCan(Category category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size) {
     super(category, item, recipeType, recipe);
     this.canType = size;
-    addItemSetting(maxUses);
+    addItemSetting(sugarCaneSuccessChance);
+    addItemSetting(cropSuccessChance);
+    addItemSetting(treeSuccessChance);
+    addItemSetting(exoticGardenSuccessChance);
+  }
+
+  public WateringCan(Category category, SlimefunItemStack item, RecipeType recipeType,
+                     ItemStack[] recipe, canType size, ItemStack recipeOutput) {
+    super(category, item, recipeType, recipe, recipeOutput);
+    this.canType = size;
     addItemSetting(sugarCaneSuccessChance);
     addItemSetting(cropSuccessChance);
     addItemSetting(treeSuccessChance);
@@ -264,10 +272,6 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
       return TreeType.valueOf(parseSapling);
     }
     return treeType;
-  }
-
-  public ItemSetting<Integer> getUses() {
-    return this.maxUses;
   }
 
   public enum canType {
