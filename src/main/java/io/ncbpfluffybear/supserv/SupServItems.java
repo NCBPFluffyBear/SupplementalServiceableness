@@ -1,11 +1,14 @@
 package io.ncbpfluffybear.supserv;
 
+import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.ElectricPress;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
 import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import me.mrCookieSlime.Slimefun.cscorelib2.skull.SkullItem;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.inventory.ItemStack;
 
 public class SupServItems {
 
@@ -73,29 +76,40 @@ public class SupServItems {
     public static final SlimefunItemStack DRAGON_EGG = new SlimefunItemStack("DRAGON_EGG",
         Material.DRAGON_EGG, null);
 
-    public static final SlimefunItemStack WATERING_CAN = new SlimefunItemStack("SS_WATERING_CAN",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+    public static final SlimefunItemStack FARMERS_HOE = new SlimefunItemStack("FARMERS_HOE",
+        Material.IRON_HOE,
+        "&3Farmers Hoe",
+        "",
+        "&7Makes sure harvested plots get reseeded, ",
+        "&7at the cost of durability",
+        "",
+        "&9Suggested by Caveman"
     );
+
+    public static final SlimefunItemStack WATERING_CAN = new SlimefunItemStack("SS_WATERING_CAN",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
     public static final SlimefunItemStack WATERING_CAN_IRON = new SlimefunItemStack("WATERING_CAN_IRON",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can [IRON]",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [IRON]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
     );
 
     //DUMMY ITEM FOR IRON WATERING CAN RECIPE USING THE WATERING CAN FROM FLUFFYMACHINES
@@ -112,51 +126,171 @@ public class SupServItems {
             "&aUses Left: &e0"
     );
     public static final SlimefunItemStack WATERING_CAN_GOLD = new SlimefunItemStack("WATERING_CAN_GOLD",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can [GOLD]",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [GOLD]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
     );
+
     public static final SlimefunItemStack WATERING_CAN_DIAMOND = new SlimefunItemStack("WATERING_CAN_DIAMOND",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can [DIAMOND]",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [DIAMOND]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
     );
+
     public static final SlimefunItemStack WATERING_CAN_EMERALD = new SlimefunItemStack("WATERING_CAN_EMERALD",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can [EMERALD]",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [EMERALD]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
     );
+
     public static final SlimefunItemStack WATERING_CAN_NETHERITE = new SlimefunItemStack("WATERING_CAN_NETHERITE",
-            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
-            "&bWatering Can [NETHERITE]",
-            "",
-            "&fWaters Plants",
-            "",
-            "&7> &eRight Click &7a water to fill your watering can",
-            "&7> &eRight Click &7a plant to speed up growth.",
-            "&7> &eRight Click &7a player to slow them down",
-            "",
-            "&aUses Left: &e0"
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [NETHERITE]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
     );
+
+    public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
+        "&f&lCompressed Cobblestone",
+        "",
+        "&7Contains 9 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack DOUBLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("DOUBLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("8c96220dc7b85b909a575acfaffb06c8c878a2d515dbec28bf2680346acf173f")),
+        "&f&lDouble Compressed Cobblestone",
+        "",
+        "&7Contains 81 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack TRIPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("TRIPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("9e2b0924aa2b424e0ff6616a93c8ef487057745af1aa5cd223c541ebd3a688a3")),
+        "&7&lTriple Compressed Cobblestone",
+        "",
+        "&7Contains 729 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack QUADRUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUADRUPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("37fba6ba0e17007ae17cb1b48f49c26a0256a7d2e8884c3cf07aaede025ebb72")),
+        "&7&lQuadruple Compressed Cobblestone",
+        "",
+        "&7Contains 6,561 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack QUINTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUINTUPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("b5a86541ed9cd29fcac0a801cece9c27a00549ecf41c46ded300bb012da59390")),
+        "&7&lQuintuple Compressed Cobblestone",
+        "",
+        "&7Contains 59,049 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack SEXTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEXTUPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("9ec69a73450820bb97b51509b334eb0d9f6c1f8a9d515fad57f3b7619aa3af9a")),
+        "&8&lSextuple Compressed Cobblestone",
+        "",
+        "&7Contains 531,441 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack SEPTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEPTUPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("b6ebc30aa2edfa1991a5ba77e2f2cb9d7398d375be99b1c1eff7aef2dddf7399")),
+        "&8&lSeptuple Compressed Cobblestone",
+        "",
+        "&7Contains 4,782,969 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    public static final SlimefunItemStack OCTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("OCTUPLE_COMPRESSED_COBBLESTONE",
+        new CustomItem(SkullItem.fromHash("811b19b06813d0388eae03bb2c97621c48a78b34f735a925787934a6c304199a")),
+        "&8&lOctuple Compressed Cobblestone",
+        "",
+        "&7Contains 43,046,721 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
+    );
+
+    static {
+        addPressRecipe(3, new ItemStack(Material.COBBLESTONE, 9),
+                COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(6, new SlimefunItemStack(COMPRESSED_COBBLESTONE, 9),
+                DOUBLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(9, new SlimefunItemStack(DOUBLE_COMPRESSED_COBBLESTONE, 9),
+                TRIPLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(12, new SlimefunItemStack(TRIPLE_COMPRESSED_COBBLESTONE, 9),
+                QUADRUPLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(15, new SlimefunItemStack(QUADRUPLE_COMPRESSED_COBBLESTONE, 9),
+                QUINTUPLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(18, new SlimefunItemStack(QUINTUPLE_COMPRESSED_COBBLESTONE, 9),
+                SEXTUPLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(21, new SlimefunItemStack(SEXTUPLE_COMPRESSED_COBBLESTONE, 9),
+                SEPTUPLE_COMPRESSED_COBBLESTONE
+        );
+        addPressRecipe(24, new SlimefunItemStack(SEPTUPLE_COMPRESSED_COBBLESTONE, 9),
+                OCTUPLE_COMPRESSED_COBBLESTONE
+        );
+
+
+    }
+
+    /**
+     * Registers a recipe to both tiers of Electric Presses
+     * @param seconds the time it takes to run
+     * @param input the item that is inserted
+     * @param output the output item
+     */
+    private static void addPressRecipe(int seconds, ItemStack input, ItemStack output) {
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS.getItem()).registerRecipe(
+                seconds, input, output
+        );
+
+        ((ElectricPress) SlimefunItems.ELECTRIC_PRESS_2.getItem()).registerRecipe(
+                seconds, input, output
+        );
+    }
 }
