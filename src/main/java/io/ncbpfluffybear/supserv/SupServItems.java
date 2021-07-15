@@ -10,8 +10,6 @@ import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.Locale;
-
 public class SupServItems {
 
     private SupServItems() {}
@@ -87,6 +85,9 @@ public class SupServItems {
             "",
             "&9Suggested by Caveman"
     );
+
+    public static final SlimefunItemStack COBBLESTONE = new SlimefunItemStack("COBBLESTONE",
+            Material.COBBLESTONE, null);
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
             new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
