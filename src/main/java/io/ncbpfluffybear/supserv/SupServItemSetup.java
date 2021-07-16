@@ -1,5 +1,6 @@
 package io.ncbpfluffybear.supserv;
 
+import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
@@ -9,7 +10,6 @@ import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -88,45 +88,95 @@ public class SupServItemSetup {
             }
         ).register(plugin);
 
+        // Compressor
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new ItemStack(Material.COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        // Grind Stone
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COBBLESTONE,
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.COMPRESSED_COBBLESTONE},
+                new ItemStack(Material.COBBLESTONE, 9)
+        ).register(plugin);
+
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new ItemStack(Material.COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.DOUBLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.TRIPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
-
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new CustomItem(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+                RecipeType.GRIND_STONE,
+                new ItemStack[] {SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE},
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
+        ).register(plugin);
 
         new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SEA_LANTERN,
             RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
