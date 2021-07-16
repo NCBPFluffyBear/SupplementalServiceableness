@@ -90,42 +90,42 @@ public class SupServItemSetup {
 
         // Compressor
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new ItemStack(Material.COBBLESTONE, 9)},
+                new ItemStack(Material.COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
-                        new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)},
                 new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 

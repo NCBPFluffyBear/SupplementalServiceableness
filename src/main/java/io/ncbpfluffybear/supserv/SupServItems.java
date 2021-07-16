@@ -77,118 +77,118 @@ public class SupServItems {
         Material.DRAGON_EGG, null);
 
     public static final SlimefunItemStack FARMERS_HOE = new SlimefunItemStack("FARMERS_HOE",
-            Material.IRON_HOE,
-            "&3Farmers Hoe",
-            "",
-            "&7Makes sure harvested plots get reseeded, ",
-            "&7at the cost of durability",
-            "",
-            "&9Suggested by Caveman"
+        Material.IRON_HOE,
+        "&3Farmers Hoe",
+        "",
+        "&7Makes sure harvested plots get reseeded, ",
+        "&7at the cost of durability",
+        "",
+        "&9Suggested by Caveman"
     );
 
     public static final SlimefunItemStack COBBLESTONE = new SlimefunItemStack("COBBLESTONE",
-            Material.COBBLESTONE, null);
+        Material.COBBLESTONE, null);
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
-            "&f&lCompressed Cobblestone",
-            "",
-            "&7Contains 9 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
+        "&f&lCompressed Cobblestone",
+        "",
+        "&7Contains 9 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack DOUBLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("DOUBLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("8c96220dc7b85b909a575acfaffb06c8c878a2d515dbec28bf2680346acf173f")),
-            "&f&lDouble Compressed Cobblestone",
-            "",
-            "&7Contains 81 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("8c96220dc7b85b909a575acfaffb06c8c878a2d515dbec28bf2680346acf173f")),
+        "&f&lDouble Compressed Cobblestone",
+        "",
+        "&7Contains 81 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack TRIPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("TRIPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("9e2b0924aa2b424e0ff6616a93c8ef487057745af1aa5cd223c541ebd3a688a3")),
-            "&7&lTriple Compressed Cobblestone",
-            "",
-            "&7Contains 729 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("9e2b0924aa2b424e0ff6616a93c8ef487057745af1aa5cd223c541ebd3a688a3")),
+        "&7&lTriple Compressed Cobblestone",
+        "",
+        "&7Contains 729 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack QUADRUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUADRUPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("37fba6ba0e17007ae17cb1b48f49c26a0256a7d2e8884c3cf07aaede025ebb72")),
-            "&7&lQuadruple Compressed Cobblestone",
-            "",
-            "&7Contains 6,561 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("37fba6ba0e17007ae17cb1b48f49c26a0256a7d2e8884c3cf07aaede025ebb72")),
+        "&7&lQuadruple Compressed Cobblestone",
+        "",
+        "&7Contains 6,561 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack QUINTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("QUINTUPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("b5a86541ed9cd29fcac0a801cece9c27a00549ecf41c46ded300bb012da59390")),
-            "&7&lQuintuple Compressed Cobblestone",
-            "",
-            "&7Contains 59,049 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("b5a86541ed9cd29fcac0a801cece9c27a00549ecf41c46ded300bb012da59390")),
+        "&7&lQuintuple Compressed Cobblestone",
+        "",
+        "&7Contains 59,049 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack SEXTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEXTUPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("9ec69a73450820bb97b51509b334eb0d9f6c1f8a9d515fad57f3b7619aa3af9a")),
-            "&8&lSextuple Compressed Cobblestone",
-            "",
-            "&7Contains 531,441 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("9ec69a73450820bb97b51509b334eb0d9f6c1f8a9d515fad57f3b7619aa3af9a")),
+        "&8&lSextuple Compressed Cobblestone",
+        "",
+        "&7Contains 531,441 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack SEPTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("SEPTUPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("b6ebc30aa2edfa1991a5ba77e2f2cb9d7398d375be99b1c1eff7aef2dddf7399")),
-            "&8&lSeptuple Compressed Cobblestone",
-            "",
-            "&7Contains 4,782,969 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("b6ebc30aa2edfa1991a5ba77e2f2cb9d7398d375be99b1c1eff7aef2dddf7399")),
+        "&8&lSeptuple Compressed Cobblestone",
+        "",
+        "&7Contains 4,782,969 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack OCTUPLE_COMPRESSED_COBBLESTONE = new SlimefunItemStack("OCTUPLE_COMPRESSED_COBBLESTONE",
-            new CustomItem(SkullItem.fromHash("811b19b06813d0388eae03bb2c97621c48a78b34f735a925787934a6c304199a")),
-            "&8&lOctuple Compressed Cobblestone",
-            "",
-            "&7Contains 43,046,721 Cobblestone",
-            "",
-            "&9Suggested by Skizzles"
+        new CustomItem(SkullItem.fromHash("811b19b06813d0388eae03bb2c97621c48a78b34f735a925787934a6c304199a")),
+        "&8&lOctuple Compressed Cobblestone",
+        "",
+        "&7Contains 43,046,721 Cobblestone",
+        "",
+        "&9Suggested by Skizzles"
     );
 
     public static final SlimefunItemStack WITHER_PROOF_SEA_LANTERN = new SlimefunItemStack("WP_SEA_LANTERN",
-            Material.SEA_LANTERN,
-            "&3Wither proof Sea Lantern",
-            "",
-            "&7Lights up your area, while resistant",
-            "&7against attacks from withers",
-            "",
-            "&9Suggested by GamingRabbit17"
+        Material.SEA_LANTERN,
+        "&3Wither proof Sea Lantern",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
     );
 
     public static final SlimefunItemStack WITHER_PROOF_GLOWSTONE = new SlimefunItemStack("WP_GLOWSTONE",
-            Material.GLOWSTONE,
-            "&3Wither proof Glowstone",
-            "",
-            "&7Lights up your area, while resistant",
-            "&7against attacks from withers",
-            "",
-            "&9Suggested by GamingRabbit17"
+        Material.GLOWSTONE,
+        "&3Wither proof Glowstone",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
     );
 
     public static final SlimefunItemStack WITHER_PROOF_SHROOMLIGHT = new SlimefunItemStack("WP_SHROOMLIGHT",
-            Material.SHROOMLIGHT,
-            "&3Wither proof Shroomlight",
-            "",
-            "&7Lights up your area, while resistant",
-            "&7against attacks from withers",
-            "",
-            "&9Suggested by GamingRabbit17"
+        Material.SHROOMLIGHT,
+        "&3Wither proof Shroomlight",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
     );
 
     static {
