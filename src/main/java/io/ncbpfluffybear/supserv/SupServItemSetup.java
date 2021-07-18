@@ -145,9 +145,14 @@ public class SupServItemSetup {
                     new ItemStack(Material.COBBLESTONE, 9)
         }).register(plugin);
 
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+            RecipeType.COMPRESSOR, new ItemStack[] {
+                    new ItemStack(Material.COBBLESTONE, 9)
+        }).register(plugin);
+
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
             RecipeType.COMPRESSOR, new ItemStack[] {
-                    new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
+                new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
