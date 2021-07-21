@@ -172,6 +172,9 @@ public class SupServItems {
         "&aUses Left: &e0"
     );
 
+    public static final SlimefunItemStack COBBLESTONE = new SlimefunItemStack("COBBLESTONE",
+            Material.COBBLESTONE, null);
+
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
         new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
         "&f&lCompressed Cobblestone",
@@ -244,6 +247,36 @@ public class SupServItems {
         "&9Suggested by Skizzles"
     );
 
+    public static final SlimefunItemStack WITHER_PROOF_SEA_LANTERN = new SlimefunItemStack("WP_SEA_LANTERN",
+        Material.SEA_LANTERN,
+        "&3Wither proof Sea Lantern",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
+    );
+
+    public static final SlimefunItemStack WITHER_PROOF_GLOWSTONE = new SlimefunItemStack("WP_GLOWSTONE",
+        Material.GLOWSTONE,
+        "&3Wither proof Glowstone",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
+    );
+
+    public static final SlimefunItemStack WITHER_PROOF_SHROOMLIGHT = new SlimefunItemStack("WP_SHROOMLIGHT",
+        Material.SHROOMLIGHT,
+        "&3Wither proof Shroomlight",
+        "",
+        "&7Lights up your area, while resistant",
+        "&7against attacks from withers",
+        "",
+        "&9Suggested by GamingRabbit17"
+    );
+
     static {
         addPressRecipe(3, new ItemStack(Material.COBBLESTONE, 9),
                 COMPRESSED_COBBLESTONE
@@ -269,8 +302,6 @@ public class SupServItems {
         addPressRecipe(24, new SlimefunItemStack(SEPTUPLE_COMPRESSED_COBBLESTONE, 9),
                 OCTUPLE_COMPRESSED_COBBLESTONE
         );
-
-
     }
 
     /**
