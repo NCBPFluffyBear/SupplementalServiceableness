@@ -74,7 +74,7 @@ public class SupServItemSetup {
         ).register(plugin);
 
         new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_EGG,
-            RecipeType.ANCIENT_ALTAR,
+            RecipeType.ANCIENT_ALTAR, 
             new ItemStack[] {
                 SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE,
                 SupServItems.DRAGON_ESSENCE, SupServItems.CONDENSED_NETHER_STAR_BLOCK, SupServItems.DRAGON_ESSENCE,
