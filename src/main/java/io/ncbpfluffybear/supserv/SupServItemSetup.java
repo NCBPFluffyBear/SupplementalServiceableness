@@ -94,15 +94,16 @@ public class SupServItemSetup {
                 null, new ItemStack(Material.IRON_INGOT), null
         }, WateringCan.canType.IRON).register(plugin);
 
-        // extra recipe watering can to accept watering can Fluffymachines
-        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
-                new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(),
-                new ItemStack(Material.IRON_INGOT),
-                null, new ItemStack(Material.IRON_INGOT), null
-        }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
-
+        if(plugin.getServer().getPluginManager().isPluginEnabled("FluffyMachines")) {
+            // extra recipe watering can to accept watering can Fluffymachines
+            new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
+                    RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                    new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
+                    new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(),
+                    new ItemStack(Material.IRON_INGOT),
+                    null, new ItemStack(Material.IRON_INGOT), null
+            }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
+        }
         new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_GOLD,
                 RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.GOLD_16K, null, SlimefunItems.GOLD_16K,
@@ -139,11 +140,6 @@ public class SupServItemSetup {
                 SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE
             }
         ).register(plugin);
-
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new ItemStack(Material.COBBLESTONE, 9)
-        }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
             RecipeType.COMPRESSOR, new ItemStack[] {
