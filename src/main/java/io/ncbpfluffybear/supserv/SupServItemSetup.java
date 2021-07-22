@@ -5,11 +5,13 @@ import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
+import io.ncbpfluffybear.supserv.items.WateringCan;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
 import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
+import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -72,21 +74,72 @@ public class SupServItemSetup {
         ).register(plugin);
 
         new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_EGG,
-            RecipeType.ANCIENT_ALTAR,
+            RecipeType.ANCIENT_ALTAR, 
             new ItemStack[] {
                 SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE,
                 SupServItems.DRAGON_ESSENCE, SupServItems.CONDENSED_NETHER_STAR_BLOCK, SupServItems.DRAGON_ESSENCE,
                 SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE
             }, new ItemStack(Material.DRAGON_EGG)
         ).register(plugin);
+        // Tools
+        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                new ItemStack(Material.STONE), null, new ItemStack(Material.STONE),
+                new ItemStack(Material.STONE), new ItemStack(Material.WATER_BUCKET), new ItemStack(Material.STONE),
+                null, new ItemStack(Material.STONE), null
+        }, WateringCan.canType.STONE).register(plugin);
 
-        new FarmersHoe(SupServItems.SUPSERV_CATEGORY, SupServItems.FARMERS_HOE, RecipeType.ANCIENT_ALTAR,
-            new ItemStack[] {
-                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
-                new ItemStack(Material.BONE_BLOCK), new ItemStack(Material.IRON_HOE), new ItemStack(Material.BONE_BLOCK),
-                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE
-            }
-        ).register(plugin);
+        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
+                new ItemStack(Material.IRON_INGOT), SupServItems.WATERING_CAN, new ItemStack(Material.IRON_INGOT),
+                null, new ItemStack(Material.IRON_INGOT), null
+        }, WateringCan.canType.IRON).register(plugin);
+
+        // Extra recipe watering can to accept watering can Fluffymachines
+        if (plugin.getServer().getPluginManager().isPluginEnabled("FluffyMachines")) {
+            new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
+                new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(), new ItemStack(Material.IRON_INGOT),
+                null, new ItemStack(Material.IRON_INGOT), null
+            }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
+        }
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new ItemStack(Material.COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
         // Grind Stone
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {

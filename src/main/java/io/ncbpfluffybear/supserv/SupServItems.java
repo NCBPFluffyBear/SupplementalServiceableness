@@ -86,8 +86,94 @@ public class SupServItems {
         "&9Suggested by Caveman"
     );
 
+    public static final SlimefunItemStack WATERING_CAN = new SlimefunItemStack("SS_WATERING_CAN",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
+    public static final SlimefunItemStack WATERING_CAN_IRON = new SlimefunItemStack("WATERING_CAN_IRON",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [IRON]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
+    //DUMMY ITEM FOR IRON WATERING CAN RECIPE USING THE WATERING CAN FROM FLUFFYMACHINES
+    public static final SlimefunItemStack WATERING_CAN_IRON_FM = new SlimefunItemStack("WATERING_CAN_IRON_FM",
+            new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+            "&bWatering Can [IRON] &4USE FOR CONVERSION ONLY",
+            "",
+            "&4NOTE: ONLY USE FOR CONVERSION FROM ",
+            "&4Fluffy Machines to SupplementalServiceableness"
+    );
+    public static final SlimefunItemStack WATERING_CAN_GOLD = new SlimefunItemStack("WATERING_CAN_GOLD",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [GOLD]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
+    public static final SlimefunItemStack WATERING_CAN_DIAMOND = new SlimefunItemStack("WATERING_CAN_DIAMOND",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [DIAMOND]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
+    public static final SlimefunItemStack WATERING_CAN_EMERALD = new SlimefunItemStack("WATERING_CAN_EMERALD",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [EMERALD]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
+    public static final SlimefunItemStack WATERING_CAN_NETHERITE = new SlimefunItemStack("WATERING_CAN_NETHERITE",
+        new CustomItem(SkullItem.fromHash("6484da45301625dee79ae29ff513efa583f1ed838033f20db80963cedf8aeb0e")),
+        "&bWatering Can [NETHERITE]",
+        "",
+        "&fWaters Plants",
+        "",
+        "&7> &eRight Click &7a water to fill your watering can",
+        "&7> &eRight Click &7a plant to speed up growth.",
+        "&7> &eRight Click &7a player to slow them down",
+        "",
+        "&aUses Left: &e0"
+    );
+
     public static final SlimefunItemStack COBBLESTONE = new SlimefunItemStack("COBBLESTONE",
-        Material.COBBLESTONE, null);
+            Material.COBBLESTONE, null);
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
         new CustomItem(SkullItem.fromHash("57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0")),
@@ -163,7 +249,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_SEA_LANTERN = new SlimefunItemStack("WP_SEA_LANTERN",
         Material.SEA_LANTERN,
-        "&3Wither proof Sea Lantern",
+        "&3Wither-Proof Sea Lantern",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",
@@ -173,7 +259,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_GLOWSTONE = new SlimefunItemStack("WP_GLOWSTONE",
         Material.GLOWSTONE,
-        "&3Wither proof Glowstone",
+        "&3Wither-Proof Glowstone",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",
@@ -183,7 +269,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_SHROOMLIGHT = new SlimefunItemStack("WP_SHROOMLIGHT",
         Material.SHROOMLIGHT,
-        "&3Wither proof Shroomlight",
+        "&3Wither-Proof Shroomlight",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",
