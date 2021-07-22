@@ -249,7 +249,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_SEA_LANTERN = new SlimefunItemStack("WP_SEA_LANTERN",
         Material.SEA_LANTERN,
-        "&3Wither proof Sea Lantern",
+        "&3Wither-Proof Sea Lantern",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",
@@ -259,7 +259,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_GLOWSTONE = new SlimefunItemStack("WP_GLOWSTONE",
         Material.GLOWSTONE,
-        "&3Wither proof Glowstone",
+        "&3Wither-Proof Glowstone",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",
@@ -269,7 +269,7 @@ public class SupServItems {
 
     public static final SlimefunItemStack WITHER_PROOF_SHROOMLIGHT = new SlimefunItemStack("WP_SHROOMLIGHT",
         Material.SHROOMLIGHT,
-        "&3Wither proof Shroomlight",
+        "&3Wither-Proof Shroomlight",
         "",
         "&7Lights up your area, while resistant",
         "&7against attacks from withers",

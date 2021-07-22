@@ -96,52 +96,50 @@ public class SupServItemSetup {
                 null, new ItemStack(Material.IRON_INGOT), null
         }, WateringCan.canType.IRON).register(plugin);
 
-        if(plugin.getServer().getPluginManager().isPluginEnabled("FluffyMachines")) {
-            // extra recipe watering can to accept watering can Fluffymachines
+        // Extra recipe watering can to accept watering can Fluffymachines
+        if (plugin.getServer().getPluginManager().isPluginEnabled("FluffyMachines")) {
             new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
-                    RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
-                    new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
-                    new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(),
-                    new ItemStack(Material.IRON_INGOT),
-                    null, new ItemStack(Material.IRON_INGOT), null
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
+                new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(), new ItemStack(Material.IRON_INGOT),
+                null, new ItemStack(Material.IRON_INGOT), null
             }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
         }
-        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_GOLD,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                SlimefunItems.GOLD_16K, null, SlimefunItems.GOLD_16K,
-                SlimefunItems.GOLD_16K, SupServItems.WATERING_CAN_IRON, SlimefunItems.GOLD_16K,
-                null, SlimefunItems.GOLD_16K, null
-        }, WateringCan.canType.GOLD).register(plugin);
 
-        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_DIAMOND,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                SlimefunItems.SYNTHETIC_DIAMOND, null, SlimefunItems.SYNTHETIC_DIAMOND,
-                SlimefunItems.SYNTHETIC_DIAMOND, SupServItems.WATERING_CAN_GOLD, SlimefunItems.SYNTHETIC_DIAMOND,
-                null, SlimefunItems.SYNTHETIC_DIAMOND, null
-        }, WateringCan.canType.DIAMOND).register(plugin);
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new ItemStack(Material.COBBLESTONE, 9)
+        }).register(plugin);
 
-        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_EMERALD,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                SlimefunItems.SYNTHETIC_EMERALD, null, SlimefunItems.SYNTHETIC_EMERALD,
-                SlimefunItems.SYNTHETIC_EMERALD, SupServItems.WATERING_CAN_DIAMOND, SlimefunItems.SYNTHETIC_EMERALD,
-                null, SlimefunItems.SYNTHETIC_EMERALD, null
-        }, WateringCan.canType.EMERALD).register(plugin);
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
-        new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_NETHERITE,
-                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
-                null, null, null,
-                null, SupServItems.WATERING_CAN_EMERALD, new ItemStack(Material.NETHERITE_INGOT),
-                null, null, null
-        }, WateringCan.canType.NETHERITE).register(plugin);
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
-        new FarmersHoe(SupServItems.SUPSERV_CATEGORY, SupServItems.FARMERS_HOE, RecipeType.ANCIENT_ALTAR,
-            new ItemStack[] {
-                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
-                new ItemStack(Material.BONE_BLOCK), new ItemStack(Material.IRON_HOE), new ItemStack(Material.BONE_BLOCK),
-                SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE
-            }
-        ).register(plugin);
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
 
         // Grind Stone
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
