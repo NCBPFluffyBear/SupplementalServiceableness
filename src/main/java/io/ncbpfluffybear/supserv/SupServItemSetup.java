@@ -1,5 +1,6 @@
 package io.ncbpfluffybear.supserv;
 
+import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
@@ -73,7 +74,7 @@ public class SupServItemSetup {
         ).register(plugin);
 
         new NonInteractableItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DRAGON_EGG,
-            RecipeType.ANCIENT_ALTAR,
+            RecipeType.ANCIENT_ALTAR, 
             new ItemStack[] {
                 SupServItems.INGOT_OF_AFTERLIFE, SupServItems.DRAGON_ESSENCE, SupServItems.INGOT_OF_AFTERLIFE,
                 SupServItems.DRAGON_ESSENCE, SupServItems.CONDENSED_NETHER_STAR_BLOCK, SupServItems.DRAGON_ESSENCE,
@@ -93,8 +94,18 @@ public class SupServItemSetup {
                 new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
                 new ItemStack(Material.IRON_INGOT), SupServItems.WATERING_CAN, new ItemStack(Material.IRON_INGOT),
                 null, new ItemStack(Material.IRON_INGOT), null
-        }, WateringCan.canType.IRON ).register(plugin);
+        }, WateringCan.canType.IRON).register(plugin);
 
+        if(plugin.getServer().getPluginManager().isPluginEnabled("FluffyMachines")) {
+            // extra recipe watering can to accept watering can Fluffymachines
+            new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
+                    RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
+                    new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
+                    new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(),
+                    new ItemStack(Material.IRON_INGOT),
+                    null, new ItemStack(Material.IRON_INGOT), null
+            }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
+        }
         new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_GOLD,
                 RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
                 SlimefunItems.GOLD_16K, null, SlimefunItems.GOLD_16K,
@@ -132,45 +143,87 @@ public class SupServItemSetup {
             }
         ).register(plugin);
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new ItemStack(Material.COBBLESTONE, 9)
-        }).register(plugin);
+        // Grind Stone
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)},
+                new ItemStack(Material.COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+        );
 
-        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
-            RecipeType.COMPRESSOR, new ItemStack[] {
-                    new CustomItem(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
-        }).register(plugin);
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE, 1)},
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
+        );
+
+        // Compressor
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new ItemStack(Material.COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
+                new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)},
+                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
+        );
 
         new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SEA_LANTERN,
             RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
