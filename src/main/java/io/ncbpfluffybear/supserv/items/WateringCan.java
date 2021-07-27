@@ -88,12 +88,13 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
     return e -> {
       Player p = e.getPlayer();
 
-      if (p.getInventory().getItemInMainHand().getType() != Material.PLAYER_HEAD) {
+      if (p.getInventory().getItemInMainHand().getType() != Material.PLAYER_HEAD && p.getInventory().getItemInOffHand().getType() != Material.PLAYER_HEAD) {
+
         Utils.send(p, "&cThis item is outdated! Please use /fm replace while holding the watering can.");
         return;
       }
 
-      if (!isItem(p.getInventory().getItemInMainHand()))
+      if (!isItem(p.getInventory().getItemInMainHand()) && !isItem(p.getInventory().getItemInOffHand()))
         return;
 
       e.cancel();
