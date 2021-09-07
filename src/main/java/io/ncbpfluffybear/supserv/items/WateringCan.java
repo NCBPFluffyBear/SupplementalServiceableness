@@ -1,20 +1,19 @@
 package io.ncbpfluffybear.supserv.items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
-import io.ncbpfluffybear.supserv.SupServPlugin;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.ncbpfluffybear.supserv.SupServPlugin;
 import io.ncbpfluffybear.supserv.utils.Constants;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.cscorelib2.chat.ChatColors;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.FluidCollisionMode;
@@ -62,7 +61,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   
   private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
-  public WateringCan(Category category, SlimefunItemStack item, RecipeType recipeType,
+  public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size) {
     super(category, item, recipeType, recipe);
     this.canType = size;
@@ -72,7 +71,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
     addItemSetting(exoticGardenSuccessChance);
   }
 
-  public WateringCan(Category category, SlimefunItemStack item, RecipeType recipeType,
+  public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size, ItemStack recipeOutput) {
     super(category, item, recipeType, recipe, recipeOutput);
     this.canType = size;
@@ -106,8 +105,8 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
         Block b = rayResult.getHitBlock();
         Location blockLocation = b.getLocation();
 
-        if (SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), blockLocation,
-                ProtectableAction.BREAK_BLOCK)) {
+        if (Slimefun.getProtectionManager().hasPermission(e.getPlayer(), blockLocation,
+                Interaction.BREAK_BLOCK)) {
 
           ItemStack item = e.getItem();
           BlockData blockData = b.getBlockData();

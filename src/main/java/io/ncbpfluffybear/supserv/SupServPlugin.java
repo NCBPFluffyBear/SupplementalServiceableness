@@ -1,12 +1,8 @@
 package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
-import me.mrCookieSlime.Slimefun.cscorelib2.config.Config;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.Bukkit;
-
-import java.io.File;
-import java.util.logging.Level;
 
 public class SupServPlugin extends JavaPlugin implements SlimefunAddon {
 

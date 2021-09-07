@@ -1,12 +1,12 @@
 package io.ncbpfluffybear.supserv.items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -19,7 +19,7 @@ import javax.annotation.Nonnull;
 
 public class LavaSponge extends SimpleSlimefunItem<ItemUseHandler> {
 
-    public LavaSponge(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, ItemStack recipeOutput) {
+    public LavaSponge(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe, ItemStack recipeOutput) {
         super(category, item, recipeType, recipe, recipeOutput);
 
     }
@@ -53,8 +53,8 @@ public class LavaSponge extends SimpleSlimefunItem<ItemUseHandler> {
                         for (int z = -1; z < 2; z++) {
                             Block rel = b.getRelative(x, y, z);
                             if (rel.getType() == Material.LAVA
-                                && SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), rel,
-                                ProtectableAction.BREAK_BLOCK)
+                                && Slimefun.getProtectionManager().hasPermission(e.getPlayer(), rel,
+                                Interaction.BREAK_BLOCK)
                             ) {
                                 rel.setType(Material.AIR);
                             }
