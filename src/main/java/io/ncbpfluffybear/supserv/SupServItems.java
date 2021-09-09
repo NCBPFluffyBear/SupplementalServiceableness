@@ -70,10 +70,10 @@ public class SupServItems {
     );
 
     public static final SlimefunItemStack WITHER_SKELETON_SKULL = new SlimefunItemStack("WITHER_SKELETON_SKULL",
-        Material.WITHER_SKELETON_SKULL, null);
+        new ItemStack(Material.WITHER_SKELETON_SKULL));
 
     public static final SlimefunItemStack DRAGON_EGG = new SlimefunItemStack("DRAGON_EGG",
-        Material.DRAGON_EGG, null);
+        new ItemStack(Material.DRAGON_EGG));
 
     public static final SlimefunItemStack FARMERS_HOE = new SlimefunItemStack("FARMERS_HOE",
         Material.IRON_HOE,
@@ -170,9 +170,6 @@ public class SupServItems {
         "",
         "&aUses Left: &e0"
     );
-
-    public static final SlimefunItemStack COBBLESTONE = new SlimefunItemStack("COBBLESTONE",
-            Material.COBBLESTONE, null);
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
         "57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0",
