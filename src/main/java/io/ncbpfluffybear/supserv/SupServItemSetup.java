@@ -1,17 +1,17 @@
 package io.ncbpfluffybear.supserv;
 
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItem;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.items.WateringCan;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.SlimefunItem;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.item.CustomItem;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -129,7 +129,7 @@ public class SupServItemSetup {
             new WateringCan(SupServItems.SUPSERV_CATEGORY, SupServItems.WATERING_CAN_IRON_FM,
                     RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[]{
                     new ItemStack(Material.IRON_INGOT), null, new ItemStack(Material.IRON_INGOT),
-                    new ItemStack(Material.IRON_INGOT), SlimefunItem.getByID("WATERING_CAN").getItem(), new ItemStack(Material.IRON_INGOT),
+                    new ItemStack(Material.IRON_INGOT), SlimefunItem.getById("WATERING_CAN").getItem(), new ItemStack(Material.IRON_INGOT),
                     null, new ItemStack(Material.IRON_INGOT), null
             }, WateringCan.canType.IRON, SupServItems.WATERING_CAN_IRON.clone()).register(plugin);
         }
@@ -149,32 +149,32 @@ public class SupServItemSetup {
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.DOUBLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.TRIPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.DOUBLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.TRIPLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.QUINTUPLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE,
                 RecipeType.COMPRESSOR, new ItemStack[] {
-                new CustomItem(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
+                new CustomItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
         // Grind Stone

@@ -1,15 +1,15 @@
 package io.ncbpfluffybear.supserv.items;
 
+import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
+import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.DamageableItem;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.SlimefunPlugin;
+import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
-import me.mrCookieSlime.Slimefun.Lists.RecipeType;
-import me.mrCookieSlime.Slimefun.Objects.Category;
+import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import me.mrCookieSlime.Slimefun.api.SlimefunItemStack;
-import me.mrCookieSlime.Slimefun.cscorelib2.protection.ProtectableAction;
 import org.bukkit.CropState;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -30,7 +30,7 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
   private static final Set<Material> TALL_PLANTS = new HashSet<>(Arrays.asList(Material.SUGAR_CANE,
           Material.CACTUS, Material.BAMBOO, Material.CHORUS_PLANT));
 
-  public FarmersHoe(Category category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
+  public FarmersHoe(ItemGroup category, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
     super(category, item, recipeType, recipe);
   }
 
@@ -56,7 +56,7 @@ public class FarmersHoe extends SimpleSlimefunItem<ItemUseHandler> implements No
       }
 
       e.cancel();
-      if (!SlimefunPlugin.getProtectionManager().hasPermission(e.getPlayer(), b, ProtectableAction.BREAK_BLOCK)) {
+      if (!Slimefun.getProtectionManager().hasPermission(e.getPlayer(), b, Interaction.BREAK_BLOCK)) {
         return;    // Check if player may 'break' the block to harvest
       }
 
