@@ -2,6 +2,7 @@ package io.ncbpfluffybear.supserv.items;
 
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
+import io.github.thebusybiscuit.slimefun4.api.items.settings.DoubleRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
@@ -45,7 +46,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   private static final int USE_INDEX = 7;
   private static final int MAX_SUGAR_GROW_HEIGHT = 5;
 
-  private final canType canType;
+  private final canType canLevel;
   private static final int STONE_SIZE = 64;
   private static final int IRON_SIZE = 100;
   private static final int GOLD_SIZE = 250;
@@ -53,32 +54,25 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   private static final int EMERALD_SIZE = 650;
   private static final int NETHERITE_SIZE = 1000;
 
-  public final ItemSetting<Double> sugarCaneSuccessChance = new ItemSetting<>(this, "sugar-cane-success-chance",
-          0.3);
-  public final ItemSetting<Double> cropSuccessChance = new ItemSetting<>(this, "crop-success-chance", 0.3);
-  public final ItemSetting<Double> treeSuccessChance = new ItemSetting<>(this, "tree-success-chance", 0.3);
-  public final ItemSetting<Double> exoticGardenSuccessChance = new ItemSetting<>(this, "exotic-garden-success-chance", 0.3);
+  public final DoubleRangeSetting sugarCaneSuccessChance = new DoubleRangeSetting(this, "sugar-cane-success-chance", 0, 0.3, 1);
+  public final DoubleRangeSetting cropSuccessChance = new DoubleRangeSetting(this, "crop-success-chance", 0, 0.3, 1);
+  public final DoubleRangeSetting treeSuccessChance = new DoubleRangeSetting(this, "tree-success-chance", 0, 0.3, 1);
+  public final DoubleRangeSetting exoticGardenSuccessChance = new DoubleRangeSetting(this, "exotic-garden-success-chance", 0, 0.3, 1);
   
   private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
   public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size) {
     super(category, item, recipeType, recipe);
-    this.canType = size;
-    addItemSetting(sugarCaneSuccessChance);
-    addItemSetting(cropSuccessChance);
-    addItemSetting(treeSuccessChance);
-    addItemSetting(exoticGardenSuccessChance);
+    this.canLevel = size;
+    addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
   }
 
   public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
                      ItemStack[] recipe, canType size, ItemStack recipeOutput) {
     super(category, item, recipeType, recipe, recipeOutput);
-    this.canType = size;
-    addItemSetting(sugarCaneSuccessChance);
-    addItemSetting(cropSuccessChance);
-    addItemSetting(treeSuccessChance);
-    addItemSetting(exoticGardenSuccessChance);
+    this.canLevel = size;
+    addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
   }
 
   @Nonnull
@@ -86,15 +80,6 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
   public ItemUseHandler getItemHandler() {
     return e -> {
       Player p = e.getPlayer();
-
-      if (p.getInventory().getItemInMainHand().getType() != Material.PLAYER_HEAD && p.getInventory().getItemInOffHand().getType() != Material.PLAYER_HEAD) {
-
-        Utils.send(p, "&cThis item is outdated! Please use /fm replace while holding the watering can.");
-        return;
-      }
-
-      if (!isItem(p.getInventory().getItemInMainHand()) && !isItem(p.getInventory().getItemInOffHand()))
-        return;
 
       e.cancel();
 
@@ -183,7 +168,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
             double random = ThreadLocalRandom.current().nextDouble();
             Material saplingMaterial = b.getType();
 
-            if (BlockStorage.hasBlockInfo(b)) {
+            if (BlockStorage.hasBlockInfo(b) && canLevel != WateringCan.canType.IRON) {
               if (random <= exoticGardenSuccessChance.getValue()) {
                 Bukkit.getPluginManager().callEvent(new StructureGrowEvent(
                         b.getLocation(), getTreeFromSapling(saplingMaterial), false, p, Collections.singletonList(b.getState())
@@ -232,7 +217,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
     } else if (updateType == 2) {
       p.playSound(p.getLocation(), Sound.ENTITY_DROWNED_DEATH_WATER, 0.5F, 1F);
       Utils.send(p, "&aYou have filled your Watering Can");
-      usesLeft = can.canType.size();
+      usesLeft = can.canLevel.size();
 
     } else if (updateType == 3) {
       if (usesLeft == 0) {

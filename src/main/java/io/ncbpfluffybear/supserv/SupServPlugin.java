@@ -2,6 +2,8 @@ package io.ncbpfluffybear.supserv;
 
 import io.github.thebusybiscuit.slimefun4.api.SlimefunAddon;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.config.Config;
+import io.ncbpfluffybear.supserv.utils.Events;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class SupServPlugin extends JavaPlugin implements SlimefunAddon {
@@ -20,6 +22,7 @@ public class SupServPlugin extends JavaPlugin implements SlimefunAddon {
         instance = this;
 
         SupServItemSetup.setup(this);
+        Bukkit.getPluginManager().registerEvents(new Events(), this);
 
     }
 

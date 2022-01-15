@@ -7,11 +7,17 @@ import io.github.thebusybiscuit.slimefun4.core.multiblocks.MultiBlockMachine;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.WitherProofBlock;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
+import io.ncbpfluffybear.supserv.items.EndermanTether;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
 import io.ncbpfluffybear.supserv.items.WateringCan;
+import io.ncbpfluffybear.supserv.machines.AdvancedElectricComposter;
+import io.ncbpfluffybear.supserv.machines.Baler;
+import io.ncbpfluffybear.supserv.machines.ExpGenerator;
+import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
+import me.sfiguz7.extratools.ExtraTools;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -139,6 +145,46 @@ public class SupServItemSetup {
                         SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE,
                         new ItemStack(Material.BONE_BLOCK), new ItemStack(Material.IRON_HOE), new ItemStack(Material.BONE_BLOCK),
                         SlimefunItems.EARTH_RUNE, SlimefunItems.WATER_RUNE, SlimefunItems.EARTH_RUNE
+                }
+        ).register(plugin);
+
+        new AdvancedElectricComposter(SupServItems.SUPSERV_CATEGORY, SupServItems.ADVANCED_ELECTRIC_COMPOSTER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.NETHER_BRICK_SLAB),
+                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItem.getById("ELECTRIC_COMPOSTER_2").getItem(), new ItemStack(Material.NETHER_BRICK_SLAB),
+                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ADVANCED_CIRCUIT_BOARD, new ItemStack(Material.NETHER_BRICK_SLAB)
+                }
+        ).register(plugin);
+
+        new ExpGenerator(SupServItems.SUPSERV_CATEGORY, SupServItems.EXP_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        new ItemStack(Material.OBSIDIAN), SlimefunItems.ELECTRO_MAGNET, new ItemStack(Material.OBSIDIAN),
+                        new ItemStack(Material.OBSIDIAN), SlimefunItems.EXP_COLLECTOR, new ItemStack(Material.OBSIDIAN),
+                        new ItemStack(Material.OBSIDIAN), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.OBSIDIAN)
+                }
+        ).register(plugin);
+
+        new Baler(SupServItems.SUPSERV_CATEGORY, SupServItems.BALER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        new ItemStack(Material.OAK_PLANKS), SlimefunItems.ELECTRO_MAGNET, new ItemStack(Material.OAK_PLANKS),
+                        new ItemStack(Material.PISTON), SlimefunItems.CRAFTING_MOTOR, new ItemStack(Material.PISTON),
+                        new ItemStack(Material.OAK_PLANKS), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.OAK_PLANKS)
+                }
+        ).register(plugin);
+
+        new EndermanTether(SupServItems.SUPSERV_CATEGORY, SupServItems.ENDERMAN_TETHER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        SlimefunItems.ENDER_RUNE, new ItemStack(Material.CRYING_OBSIDIAN), SlimefunItems.ENDER_RUNE,
+                        SlimefunItems.ENDER_LUMP_3, SlimefunItems.INFUSED_MAGNET, SlimefunItems.ENDER_LUMP_3,
+                        SlimefunItems.ENDER_RUNE, new ItemStack(Material.CRYING_OBSIDIAN), SlimefunItems.ENDER_RUNE
+                }
+        ).register(plugin);
+
+        new HeadGrinder(SupServItems.SUPSERV_CATEGORY, SupServItems.HEAD_GRINDER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        new ItemStack(Material.SMOOTH_STONE_SLAB), new ItemStack(Material.STONECUTTER), new ItemStack(Material.SMOOTH_STONE_SLAB),
+                        new ItemStack(Material.PISTON), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.PISTON),
+                        new ItemStack(Material.IRON_BLOCK), SlimefunItems.MEDIUM_CAPACITOR, new ItemStack(Material.IRON_BLOCK)
                 }
         ).register(plugin);
 
