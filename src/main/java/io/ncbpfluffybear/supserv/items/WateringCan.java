@@ -5,15 +5,18 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.items.settings.DoubleRangeSetting;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.NotPlaceable;
+import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.implementation.Slimefun;
+import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.common.ChatColors;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction;
 import io.ncbpfluffybear.supserv.SupServPlugin;
 import io.ncbpfluffybear.supserv.utils.Constants;
 import io.ncbpfluffybear.supserv.utils.Utils;
-import io.github.thebusybiscuit.slimefun4.api.items.ItemSetting;
-import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
-import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import javax.annotation.Nonnull;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
 import org.bukkit.Bukkit;
 import org.bukkit.Effect;
@@ -36,199 +39,222 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.util.RayTraceResult;
 
-import javax.annotation.Nonnull;
-import java.util.Collections;
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-
 public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements NotPlaceable {
 
-  private static final int USE_INDEX = 7;
-  private static final int MAX_SUGAR_GROW_HEIGHT = 5;
+    private static final int USE_INDEX = 7;
+    private static final int MAX_SUGAR_GROW_HEIGHT = 5;
 
-  private final canType canLevel;
-  private static final int STONE_SIZE = 64;
-  private static final int IRON_SIZE = 100;
-  private static final int GOLD_SIZE = 250;
-  private static final int DIAMOND_SIZE = 400;
-  private static final int EMERALD_SIZE = 650;
-  private static final int NETHERITE_SIZE = 1000;
+    private final canType canLevel;
+    private static final int STONE_SIZE = 64;
+    private static final int IRON_SIZE = 100;
+    private static final int GOLD_SIZE = 250;
+    private static final int DIAMOND_SIZE = 400;
+    private static final int EMERALD_SIZE = 650;
+    private static final int NETHERITE_SIZE = 1000;
 
-  public final DoubleRangeSetting sugarCaneSuccessChance = new DoubleRangeSetting(this, "sugar-cane-success-chance", 0, 0.3, 1);
-  public final DoubleRangeSetting cropSuccessChance = new DoubleRangeSetting(this, "crop-success-chance", 0, 0.3, 1);
-  public final DoubleRangeSetting treeSuccessChance = new DoubleRangeSetting(this, "tree-success-chance", 0, 0.3, 1);
-  public final DoubleRangeSetting exoticGardenSuccessChance = new DoubleRangeSetting(this, "exotic-garden-success-chance", 0, 0.3, 1);
-  
-  private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
+    public final DoubleRangeSetting sugarCaneSuccessChance = new DoubleRangeSetting(this, "sugar-cane-success-chance", 0, 0.3, 1);
+    public final DoubleRangeSetting cropSuccessChance = new DoubleRangeSetting(this, "crop-success-chance", 0, 0.3, 1);
+    public final DoubleRangeSetting treeSuccessChance = new DoubleRangeSetting(this, "tree-success-chance", 0, 0.3, 1);
+    public final DoubleRangeSetting exoticGardenSuccessChance = new DoubleRangeSetting(this, "exotic-garden-success-chance", 0, 0.3, 1);
 
-  public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
-                     ItemStack[] recipe, canType size) {
-    super(category, item, recipeType, recipe);
-    this.canLevel = size;
-    addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
-  }
+    private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
-  public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
-                     ItemStack[] recipe, canType size, ItemStack recipeOutput) {
-    super(category, item, recipeType, recipe, recipeOutput);
-    this.canLevel = size;
-    addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
-  }
+    public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+                       ItemStack[] recipe, canType size) {
+        super(category, item, recipeType, recipe);
+        this.canLevel = size;
+        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
+    }
 
-  @Nonnull
-  @Override
-  public ItemUseHandler getItemHandler() {
-    return e -> {
-      Player p = e.getPlayer();
+    public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
+                       ItemStack[] recipe, canType size, ItemStack recipeOutput) {
+        super(category, item, recipeType, recipe, recipeOutput);
+        this.canLevel = size;
+        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
+    }
 
-      e.cancel();
+    @Nonnull
+    @Override
+    public ItemUseHandler getItemHandler() {
+        return e -> {
+            Player p = e.getPlayer();
 
-      RayTraceResult rayResult = p.rayTraceBlocks(5d, FluidCollisionMode.SOURCE_ONLY);
+            e.getInteractEvent().setCancelled(true);
 
-      if (rayResult != null) {
+            RayTraceResult rayResult = p.rayTraceBlocks(5d, FluidCollisionMode.SOURCE_ONLY);
 
-        Block b = rayResult.getHitBlock();
-        Location blockLocation = b.getLocation();
+            if (rayResult == null) {
+                return;
+            }
 
-        if (Slimefun.getProtectionManager().hasPermission(e.getPlayer(), blockLocation,
-                Interaction.BREAK_BLOCK)) {
+            Block b = rayResult.getHitBlock();
+            Location blockLocation = b.getLocation();
 
-          ItemStack item = e.getItem();
-          BlockData blockData = b.getBlockData();
+            if (!Slimefun.getProtectionManager().hasPermission(e.getPlayer(), blockLocation,
+                    Interaction.BREAK_BLOCK)) {
+                return;
+            }
 
-          // Fill if it hits water
-          if (b.getType() == Material.WATER) {
-            updateUses(this, p, item, 2);
+            ItemStack item = e.getItem();
+            BlockData blockData = b.getBlockData();
+
+            // Fill if it hits water
+            if (b.getType() == Material.WATER) {
+                updateUses(this, p, item, 2);
+                return;
+            }
 
             // Sugar Cane
-          } else if (b.getType() == Material.SUGAR_CANE) {
+            if (b.getType() == Material.SUGAR_CANE) {
 
-            int distance = 2;
-            Block above = b.getRelative(BlockFace.UP);
+                // Check if can has water
+                if (getRemainingUses(item, p, true) < 1) {
+                    return;
+                }
 
-            while (above.getType() == Material.SUGAR_CANE) {
+                int distance = 2;
+                Block above = b.getRelative(BlockFace.UP);
 
-              // Failsafe
-              if (distance >= MAX_SUGAR_GROW_HEIGHT) {
-                //Utils.send(p, "&cThis sugar cane is too tall!");
-                return;
-              }
+                while (above.getType() == Material.SUGAR_CANE) {
 
-              above = b.getRelative(BlockFace.UP, distance);
-              distance++;
-            }
+                    // Failsafe
+                    if (distance >= MAX_SUGAR_GROW_HEIGHT) {
+                        //Utils.send(p, "&cThis sugar cane is too tall!");
+                        return;
+                    }
 
-            if (above.getType() == Material.AIR) {
+                    above = b.getRelative(BlockFace.UP, distance);
+                    distance++;
+                }
 
-              if (!updateUses(this, p, item, 1))
-                return;
-              blockLocation.getWorld().spawnParticle(Particle.WATER_SPLASH, blockLocation, 0);
-              double random = ThreadLocalRandom.current().nextDouble();
-              if (random <= sugarCaneSuccessChance.getValue()) {
-                above.setType(Material.SUGAR_CANE);
-                blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
-              }
+                if (above.getType() == Material.AIR) {
 
-            } else {
-              //Utils.send(p, "&cThe sugar cane is obstructed!");
-            }
+                    blockLocation.getWorld().spawnParticle(Particle.WATER_SPLASH, blockLocation, 0);
+                    double random = ThreadLocalRandom.current().nextDouble();
+                    if (random <= sugarCaneSuccessChance.getValue()) {
+                        above.setType(Material.SUGAR_CANE);
+                        blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
+                    }
+
+                    updateUses(this, p, item, 1);
+
+                }
 
             // Crops
-          } else if (blockData instanceof Ageable) {
+            } else if (blockData instanceof Ageable) {
 
-            Ageable crop = (Ageable) blockData;
-            int currentAge = crop.getAge();
-            int maxAge = crop.getMaximumAge();
+                // Check if can has water
+                if (getRemainingUses(item, p, true) < 1) {
+                    return;
+                }
 
-            if (currentAge < maxAge) {
-              if (updateUses(this, p, item, 1)) {
+                Ageable crop = (Ageable) blockData;
+                int currentAge = crop.getAge();
+                int maxAge = crop.getMaximumAge();
+
+                if (currentAge < maxAge) {
+                    blockLocation.getWorld().spawnParticle(Particle.WATER_SPLASH, blockLocation, 0);
+                    double random = ThreadLocalRandom.current().nextDouble();
+                    if (random <= cropSuccessChance.getValue()) {
+                        crop.setAge(currentAge + 1);
+                        blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
+                    }
+
+                    updateUses(this, p, item, 1);
+
+                }
+
+                b.setBlockData(blockData);
+
+                // Trees
+            } else if (Tag.SAPLINGS.isTagged(b.getType())) {
+
+                // Check if can has water
+                if (getRemainingUses(item, p, true) < 1) {
+                    return;
+                }
+
                 blockLocation.getWorld().spawnParticle(Particle.WATER_SPLASH, blockLocation, 0);
                 double random = ThreadLocalRandom.current().nextDouble();
-                if (random <= cropSuccessChance.getValue()) {
-                  crop.setAge(currentAge + 1);
-                  blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
+                Material saplingMaterial = b.getType();
+
+                if (BlockStorage.hasBlockInfo(b)) {
+                    if (canLevel == canType.STONE) {
+                        Utils.send(p, "&cStone watering cans can not grow ExoticGarden plants!");
+                        return;
+                    }
+
+                    if (random <= exoticGardenSuccessChance.getValue()) {
+                        Bukkit.getPluginManager().callEvent(new StructureGrowEvent(
+                                b.getLocation(), getTreeFromSapling(saplingMaterial), false, p, Collections.singletonList(b.getState())
+                        ));
+                        blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
+
+                    }
+
+                } else {
+
+                    if (Constants.SERVER_VERSION < 1163) {
+                        if (random <= treeSuccessChance.getValue()) {
+
+                            b.setType(Material.AIR);
+                            if (!blockLocation.getWorld().generateTree(blockLocation,
+                                    getTreeFromSapling(saplingMaterial))) {
+                                b.setType(saplingMaterial);
+                            }
+                            blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
+                        }
+                    } else {
+                        b.applyBoneMeal(p.getFacing());
+                    }
                 }
-              }
 
-            } else {
-              //Utils.send(p, "&cThis crop is already ready for harvest!");
-              return;
+                updateUses(this, p, item, 1);
             }
-
-            b.setBlockData(blockData);
-
-            // Trees
-          } else if (Tag.SAPLINGS.isTagged(b.getType())) {
-
-            if (!updateUses(this, p, item, 1)) {
-              return;
-            }
-
-            blockLocation.getWorld().spawnParticle(Particle.WATER_SPLASH, blockLocation, 0);
-            double random = ThreadLocalRandom.current().nextDouble();
-            Material saplingMaterial = b.getType();
-
-            if (BlockStorage.hasBlockInfo(b) && canLevel != WateringCan.canType.IRON) {
-              if (random <= exoticGardenSuccessChance.getValue()) {
-                Bukkit.getPluginManager().callEvent(new StructureGrowEvent(
-                        b.getLocation(), getTreeFromSapling(saplingMaterial), false, p, Collections.singletonList(b.getState())
-                ));
-                blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
-
-              }
-
-            } else {
-
-              if (Constants.SERVER_VERSION < 1163) {
-                if (random <= treeSuccessChance.getValue()) {
-
-                  b.setType(Material.AIR);
-                  if (!blockLocation.getWorld().generateTree(blockLocation,
-                          getTreeFromSapling(saplingMaterial))) {
-                    b.setType(saplingMaterial);
-                  }
-                  blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
-                }
-              } else {
-                b.applyBoneMeal(p.getFacing());
-              }
-            }
-          }
-        }
-      }
-    };
-  }
-
-  public static boolean updateUses(WateringCan can, Player p, ItemStack item, int updateType) {
-
-    ItemMeta meta = item.getItemMeta();
-    List<String> lore = meta.getLore();
-    int usesLeft = meta.getPersistentDataContainer().getOrDefault(usageKey, PersistentDataType.INTEGER, 0);
-
-    if (updateType == 1) {
-
-      if (usesLeft == 0) {
-        Utils.send(p, "&cYou need to refill your Watering Can!");
-        return false;
-      }
-      p.playSound(p.getLocation(), Sound.ENTITY_DROWNED_AMBIENT_WATER, 0.5F, 1F);
-      usesLeft--;
-
-    } else if (updateType == 2) {
-      p.playSound(p.getLocation(), Sound.ENTITY_DROWNED_DEATH_WATER, 0.5F, 1F);
-      Utils.send(p, "&aYou have filled your Watering Can");
-      usesLeft = can.canLevel.size();
-
-    } else if (updateType == 3) {
-      if (usesLeft == 0) {
-        Utils.send(p, "&cYou need to refill your Watering Can!");
-        return false;
-      }
-      usesLeft = 0;
-      p.playSound(p.getLocation(), Sound.ITEM_BUCKET_EMPTY, 0.5F, 1F);
-    } else {
-      p.sendMessage("Error");
+        };
     }
+
+    /**
+     * Gets remaining uses in a watering can
+     */
+    private static int getRemainingUses(ItemStack item, Player p, boolean warnRefill) {
+        ItemMeta meta = item.getItemMeta();
+        int remainingUses = meta.getPersistentDataContainer().getOrDefault(usageKey, PersistentDataType.INTEGER, 0);
+
+        if (warnRefill && remainingUses < 1) {
+            Utils.send(p, "&cYou need to refill your Watering Can!");
+        }
+
+        return remainingUses;
+    }
+
+    public static boolean updateUses(WateringCan can, Player p, ItemStack item, int updateType) {
+
+        ItemMeta meta = item.getItemMeta();
+        List<String> lore = meta.getLore();
+
+        int usesLeft = getRemainingUses(item, p, false);
+
+        if (updateType == 1) {
+
+            p.playSound(p.getLocation(), Sound.ENTITY_DROWNED_AMBIENT_WATER, 0.5F, 1F);
+            usesLeft--;
+
+        } else if (updateType == 2) {
+            p.playSound(p.getLocation(), Sound.ENTITY_DROWNED_DEATH_WATER, 0.5F, 1F);
+            Utils.send(p, "&aYou have filled your Watering Can");
+            usesLeft = can.canLevel.size();
+
+        } else if (updateType == 3) {
+            if (usesLeft == 0) {
+                Utils.send(p, "&cYou need to refill your Watering Can!");
+                return false;
+            }
+            usesLeft = 0;
+            p.playSound(p.getLocation(), Sound.ITEM_BUCKET_EMPTY, 0.5F, 1F);
+        } else {
+            p.sendMessage("Error");
+        }
 
         /*
         if (usesLeft == 0) {
@@ -236,44 +262,45 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
         }
          */
 
-    lore.set(USE_INDEX, ChatColors.color("&aUses Left: &e" + usesLeft));
-    meta.setLore(lore);
-    meta.getPersistentDataContainer().set(usageKey, PersistentDataType.INTEGER, usesLeft);
-    item.setItemMeta(meta);
-    //Utils.send(p, "&eYou have " + usesLeft + " uses left");
+        lore.set(USE_INDEX, ChatColors.color("&aUses Left: &e" + usesLeft));
+        meta.setLore(lore);
+        meta.getPersistentDataContainer().set(usageKey, PersistentDataType.INTEGER, usesLeft);
+        item.setItemMeta(meta);
+        //Utils.send(p, "&eYou have " + usesLeft + " uses left");
 
-    return true;
-  }
-
-  private static TreeType getTreeFromSapling(Material m) {
-    TreeType treeType = TreeType.TREE;
-    String parseSapling = m.toString()
-            .replace("_SAPLING", "");
-
-    if (!parseSapling.equals("OAK")) {
-      if (parseSapling.equals("JUNGLE")) {
-        parseSapling = "SMALL_JUNGLE";
-      }
-      return TreeType.valueOf(parseSapling);
-    }
-    return treeType;
-  }
-
-  public enum canType {
-    STONE (STONE_SIZE),
-    IRON (IRON_SIZE),
-    GOLD (GOLD_SIZE),
-    DIAMOND (DIAMOND_SIZE),
-    EMERALD (EMERALD_SIZE),
-    NETHERITE (NETHERITE_SIZE);
-
-    private final int size;
-    canType(int size) {
-      this.size = size;
+        return true;
     }
 
-    private int size() {
-      return size;
+    private static TreeType getTreeFromSapling(Material m) {
+        TreeType treeType = TreeType.TREE;
+        String parseSapling = m.toString()
+                .replace("_SAPLING", "");
+
+        if (!parseSapling.equals("OAK")) {
+            if (parseSapling.equals("JUNGLE")) {
+                parseSapling = "SMALL_JUNGLE";
+            }
+            return TreeType.valueOf(parseSapling);
+        }
+        return treeType;
     }
-  }
+
+    public enum canType {
+        STONE(STONE_SIZE),
+        IRON(IRON_SIZE),
+        GOLD(GOLD_SIZE),
+        DIAMOND(DIAMOND_SIZE),
+        EMERALD(EMERALD_SIZE),
+        NETHERITE(NETHERITE_SIZE);
+
+        private final int size;
+
+        canType(int size) {
+            this.size = size;
+        }
+
+        private int size() {
+            return size;
+        }
+    }
 }
