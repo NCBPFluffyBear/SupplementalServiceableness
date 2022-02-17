@@ -4,6 +4,8 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.ElectricPress;
+import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.GrindStone;
+import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.OreCrusher;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
 import io.ncbpfluffybear.supserv.machines.AdvancedElectricComposter;
@@ -12,6 +14,7 @@ import io.ncbpfluffybear.supserv.machines.ExpGenerator;
 import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 public class SupServItems {
@@ -368,6 +371,9 @@ public class SupServItems {
         addPressRecipe(24, new SlimefunItemStack(SEPTUPLE_COMPRESSED_COBBLESTONE, 9),
                 OCTUPLE_COMPRESSED_COBBLESTONE
         );
+        addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.STONE, 8)},
+                new ItemStack(Material.COBBLESTONE, 8)
+        );
     }
 
     /**
@@ -385,5 +391,15 @@ public class SupServItems {
         ((ElectricPress) SlimefunItems.ELECTRIC_PRESS_2.getItem()).registerRecipe(
                 seconds, input, output
         );
+    }
+
+    /**
+     * Registers a recipe to Ore Crusher
+     *
+     * @param input an array of items that are inserted
+     * @param output the output item
+     */
+    private static void addOreCrusherRecipe(ItemStack[] input, ItemStack output) {
+        ((OreCrusher) SlimefunItems.ORE_CRUSHER.getItem()).addRecipe(input, output);
     }
 }
