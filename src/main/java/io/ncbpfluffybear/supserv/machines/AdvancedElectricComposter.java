@@ -45,7 +45,7 @@ public class AdvancedElectricComposter extends AContainer implements RecipeDispl
             );
         }
 
-        registerRecipe(1, new ItemStack(Material.SOUL_SOIL, 1),
+        registerRecipe(1, new ItemStack(Material.SOUL_SOIL),
                 new ItemStack(Material.SOUL_SAND)
         );
     }

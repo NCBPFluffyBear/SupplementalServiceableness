@@ -395,7 +395,7 @@ public class SupServItems {
     /**
      * Registers a recipe to Ore Crusher
      *
-     * @param input  an array of items that are inserted
+     * @param input an array of items that are inserted
      * @param output the output item
      */
     private static void addOreCrusherRecipe(ItemStack[] input, ItemStack output) {
