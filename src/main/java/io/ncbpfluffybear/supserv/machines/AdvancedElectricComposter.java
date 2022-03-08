@@ -9,13 +9,14 @@ import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.api.recipes.RecipeType;
 import io.github.thebusybiscuit.slimefun4.core.attributes.RecipeDisplayItem;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
-import java.util.ArrayList;
-import java.util.List;
-import javax.annotation.Nonnull;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.MachineRecipe;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
+
+import javax.annotation.Nonnull;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdvancedElectricComposter extends AContainer implements RecipeDisplayItem {
 
@@ -43,6 +44,10 @@ public class AdvancedElectricComposter extends AContainer implements RecipeDispl
                     new ItemStack(Material.DIRT)
             );
         }
+
+        registerRecipe(1, new ItemStack(Material.SOUL_SOIL),
+                new ItemStack(Material.SOUL_SAND)
+        );
     }
 
     @Nonnull

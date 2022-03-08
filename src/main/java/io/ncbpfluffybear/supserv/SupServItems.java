@@ -4,7 +4,6 @@ import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.ElectricPress;
-import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.GrindStone;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.OreCrusher;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.github.thebusybiscuit.slimefun4.utils.LoreBuilder;
@@ -14,7 +13,6 @@ import io.ncbpfluffybear.supserv.machines.ExpGenerator;
 import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 public class SupServItems {
@@ -287,6 +285,7 @@ public class SupServItems {
             "&cAdvanced Electric Composter",
             "",
             "&7Composts Exotic Garden saplings",
+            "&7also turns soul soil into soul sand",
             "",
             "&aMedium Machine",
             LoreBuilder.powerBuffer(AdvancedElectricComposter.CAPACITY),
