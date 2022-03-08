@@ -285,6 +285,7 @@ public class SupServItems {
             "&cAdvanced Electric Composter",
             "",
             "&7Composts Exotic Garden saplings",
+            "&7also turns soul soil into soul sand",
             "",
             "&aMedium Machine",
             LoreBuilder.powerBuffer(AdvancedElectricComposter.CAPACITY),
