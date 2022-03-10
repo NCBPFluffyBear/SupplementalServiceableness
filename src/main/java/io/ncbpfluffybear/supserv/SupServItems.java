@@ -3,6 +3,7 @@ package io.ncbpfluffybear.supserv;
 import io.github.thebusybiscuit.slimefun4.api.items.ItemGroup;
 import io.github.thebusybiscuit.slimefun4.api.items.SlimefunItemStack;
 import io.github.thebusybiscuit.slimefun4.implementation.SlimefunItems;
+import io.github.thebusybiscuit.slimefun4.implementation.items.blocks.Composter;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.machines.ElectricPress;
 import io.github.thebusybiscuit.slimefun4.implementation.items.multiblocks.OreCrusher;
 import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
@@ -13,7 +14,10 @@ import io.ncbpfluffybear.supserv.machines.ExpGenerator;
 import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
+
+import java.util.Arrays;
 
 public class SupServItems {
 
@@ -373,6 +377,7 @@ public class SupServItems {
         addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.STONE, 8)},
                 new ItemStack(Material.COBBLESTONE, 8)
         );
+        addComposterRecipe(new ItemStack(Material.SOUL_SOIL), new ItemStack(Material.SOUL_SAND));
     }
 
     /**
@@ -400,5 +405,17 @@ public class SupServItems {
      */
     private static void addOreCrusherRecipe(ItemStack[] input, ItemStack output) {
         ((OreCrusher) SlimefunItems.ORE_CRUSHER.getItem()).addRecipe(input, output);
+    }
+
+    /**
+     * Register a recipe to Composter
+     *
+     * @param input the item that is inserted
+     * @param output the output item
+     */
+    private static void addComposterRecipe(ItemStack input, ItemStack output) {
+        ((Composter) SlimefunItems.COMPOSTER.getItem()).getDisplayRecipes().addAll(
+                Arrays.asList(input, output)
+        );
     }
 }
