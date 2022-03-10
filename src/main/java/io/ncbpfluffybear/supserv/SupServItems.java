@@ -178,6 +178,15 @@ public class SupServItems {
             "&aUses Left: &e0"
     );
 
+    public static final SlimefunItemStack VOLTMETER = new SlimefunItemStack("VOLTMETER", Material.CLOCK,
+            "&eVoltmeter",
+            "",
+            "&7This tool can give you statistics",
+            "&7about your energy network",
+            "",
+            "&7> &eRight click &7your energy regulator"
+    );
+
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
             "57f99971601ee77666c05923f341a89ceba1357532279e3926aea79f55d263a0",
             "&f&lCompressed Cobblestone",
