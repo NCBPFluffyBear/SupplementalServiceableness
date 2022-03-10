@@ -14,7 +14,6 @@ import io.ncbpfluffybear.supserv.machines.ExpGenerator;
 import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Item;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.Arrays;
