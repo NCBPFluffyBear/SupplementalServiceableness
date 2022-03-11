@@ -8,15 +8,10 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetComponent;
 import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
-import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNetComponentType;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
-import io.ncbpfluffybear.supserv.utils.Utils;
-import me.mrCookieSlime.CSCoreLibPlugin.Configuration.Config;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.Server;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -122,6 +117,9 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
 
                 }
 
+                int minCapacityOnlyCapacitors = minCapacity;
+                int maxCapacityOnlyCapacitors = maxCapacity;
+
                 for (Location l : consumers.keySet()) {
                     AContainer consumer = (AContainer) consumers.get(l);
 
@@ -131,6 +129,14 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                     currentCharge += consumer.getCharge(l);
 
                     joulesPerSecConsumed += consumer.getEnergyConsumption();
+
+                    if (consumer.getCapacity() > maxCapacity) {
+                        maxCapacity = consumer.getCapacity();
+                    }
+
+                    if (consumer.getCapacity() < minCapacity) {
+                        minCapacity = consumer.getCapacity();
+                    }
 
                     if (consumption > maxConsumption) {
                         maxConsumption = consumption;
@@ -160,47 +166,22 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                     }*/
                 }
 
-                double averageGeneration = joulesPerSecGenerated / numberOfGenerators == 0 ? 1 : numberOfGenerators;
-                double averageConsumption = joulesPerSecConsumed / numberOfConsumers == 0 ? 1 : numberOfConsumers;
-                double averageCapacitySize = fullCapacity / ((numberOfCapacitors + numberOfConsumers + numberOfGenerators));
-                double averageChargeSize = currentCharge / ((numberOfCapacitors + numberOfConsumers + numberOfGenerators));
-                double averageCapacitySizeOnlyCapacitors = fullCapacityOnlyCapacitors / numberOfCapacitors == 0 ? 1 : numberOfCapacitors;
-                double averageChargeSizeOnlyCapacitors = currentChargeOnlyCapacitors / numberOfCapacitors == 0 ? 1 : numberOfCapacitors;
+                double averageGeneration = joulesPerSecGenerated / (numberOfGenerators == 0 ? 1 : numberOfGenerators);
+                double averageConsumption = joulesPerSecConsumed / (numberOfConsumers == 0 ? 1 : numberOfConsumers);
+                double averageCapacitySize = fullCapacity / (numberOfCapacitors + numberOfConsumers + numberOfGenerators);
+                double averageChargeSize = currentCharge / (numberOfCapacitors + numberOfConsumers + numberOfGenerators);
+                double averageCapacitySizeOnlyCapacitors = fullCapacityOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
+                double averageChargeSizeOnlyCapacitors = currentChargeOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
 
 
-                StringBuilder min = new StringBuilder();
-                StringBuilder max = new StringBuilder();
-                StringBuilder average = new StringBuilder();
-
-                int tmp = fullCapacity;
-
-                int offset = 0;
-
-                while (tmp > 100) {
-                    tmp /= 10;
-                    offset++;
-                }
-
-                player.sendMessage("&5&lEnergy Network Statistics");
-
-                offset = (int) Math.pow(10, offset);
-
-                for (int i = 0; i < minConsumption / offset; i++) {
-                    min.append("#");
-                }
-                for (int i = 0; i < averageConsumption / offset; i++) {
-                    average.append("#");
-                }
-
-                for (int i = 0; i < maxConsumption / offset; i++) {
-                    max.append("#");
-                }
-
-                player.sendMessage("+-------------+-----+ ");
-                player.sendMessage("|             | MIN | " + min);
-                player.sendMessage("| Consumption | AVG | " + average);
-                player.sendMessage("|             | MAX | " + max);
-                player.sendMessage("+-------------+-----+ ");
+                player.sendMessage("Consumption: Min: " + minConsumption + " Avg: "
+                        + averageConsumption + " Max: " + maxConsumption);
+                player.sendMessage("Capacity: Min: " + minCapacity + " Avg: "
+                        + averageCapacitySize + " Max: " + maxCapacity);
+                player.sendMessage("Capacity (capacitors only): Min: " + minCapacityOnlyCapacitors + " Avg: " +
+                        averageCapacitySizeOnlyCapacitors + " Max: " + maxCapacityOnlyCapacitors);
+                player.sendMessage("Generation: Min: " + minGeneration + " Avg: "
+                        + averageGeneration + " Max: " + maxGeneration);
             }
         };
     }
