@@ -167,7 +167,9 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
                 b.setBlockData(blockData);
 
                 // Trees
-            } else if (Tag.SAPLINGS.isTagged(b.getType())) {
+            } else if (Tag.SAPLINGS.isTagged(b.getType()) ||
+                Material.BROWN_MUSHROOM == b.getType() ||
+                Material.RED_MUSHROOM == b.getType()) {
 
                 // Check if can has water
                 if (getRemainingUses(item, p, true) < 1) {
