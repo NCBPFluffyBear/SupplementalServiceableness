@@ -8,8 +8,12 @@ import io.github.thebusybiscuit.slimefun4.core.attributes.EnergyNetProvider;
 import io.github.thebusybiscuit.slimefun4.core.handlers.ItemUseHandler;
 import io.github.thebusybiscuit.slimefun4.core.networks.energy.EnergyNet;
 import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunItem;
+import io.github.thebusybiscuit.slimefun4.implementation.items.electric.AbstractEnergyProvider;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
+import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.SolarGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
+import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -84,9 +88,17 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
             int maxGeneration = 0;
             int maxConsumption = 0;
 
+            EnergyNetComponent largestCapacitor = null;
+            EnergyNetComponent largestConsumer = null;
+            EnergyNetComponent largestGenerator = null;
+
             int minCapacity = Integer.MAX_VALUE;
             int minGeneration = Integer.MAX_VALUE;
             int minConsumption = Integer.MAX_VALUE;
+
+            EnergyNetComponent smallestCapacitor = null;
+            EnergyNetComponent smallestConsumer = null;
+            EnergyNetComponent smallestGenerator = null;
 
             int joulesPerSecGenerated = 0;
             int joulesPerSecConsumed = 0;
@@ -104,10 +116,12 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
 
                 if (capacity > maxCapacity) {
                     maxCapacity = capacity;
+                    largestCapacitor = capacitor;
                 }
 
                 if (capacity < minCapacity) {
                     minCapacity = capacity;
+                    smallestCapacitor = capacitor;
                 }
 
             }
@@ -135,30 +149,59 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
 
                 if (consumption > maxConsumption) {
                     maxConsumption = consumption;
+                    largestConsumer = consumer;
                 }
 
                 if (consumption < minConsumption) {
                     minConsumption = consumption;
+                    smallestConsumer = consumer;
                 }
             }
 
             for (Location l : generators.keySet()) {
+
                 EnergyNetProvider generator = generators.get(l);
 
-                //int generatedOutput = generator.getGeneratedOutput(l, (Config) l.getBlock().getBlockData());
+                if(generator instanceof SolarGenerator) {
+                    SolarGenerator sGenerator = (SolarGenerator) generator;
 
-                fullCapacity += generator.getCapacity();
-                currentCharge += generator.getCharge(l);
+                    int generatedOutput = (sGenerator.getDayEnergy() + sGenerator.getNightEnergy()) / 2;
 
-                /*joulesPerSecGenerated += generatedOutput;
+                    fullCapacity += sGenerator.getCapacity();
+                    currentCharge += sGenerator.getCharge(l);
 
-                if (generatedOutput > maxGeneration) {
-                    maxGeneration = generatedOutput;
+                    joulesPerSecGenerated += generatedOutput;
+
+                    if (generatedOutput > maxGeneration) {
+                        maxGeneration = generatedOutput;
+                        largestGenerator = sGenerator;
+                    }
+
+                    if (generatedOutput < minGeneration) {
+                        minGeneration = generatedOutput;
+                        smallestGenerator = sGenerator;
+                    }
+
+                } else {
+                    AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
+
+                    int generatedOutput =  aGenerator.getEnergyProduction();
+
+                    fullCapacity += aGenerator.getCapacity();
+                    currentCharge += aGenerator.getCharge(l);
+
+                    joulesPerSecGenerated += generatedOutput;
+
+                    if (generatedOutput > maxGeneration) {
+                        maxGeneration = generatedOutput;
+                        largestGenerator = aGenerator;
+                    }
+
+                    if (generatedOutput < minGeneration) {
+                        minGeneration = generatedOutput;
+                        smallestGenerator = aGenerator;
+                    }
                 }
-
-                if (generatedOutput < minGeneration) {
-                    minGeneration = generatedOutput;
-                }*/
             }
 
             double averageGeneration = (double) joulesPerSecGenerated / (numberOfGenerators == 0 ? 1 : numberOfGenerators);
@@ -168,15 +211,25 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
             double averageCapacitySizeOnlyCapacitors = (double) fullCapacityOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
             double averageChargeSizeOnlyCapacitors = (double) currentChargeOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
 
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Consumption"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&a[Min] &f" + minConsumption + " J &e[Avg] &f"
+                    + averageConsumption + " J &c[Max] &f" + maxConsumption + " J"));
 
-            player.sendMessage("Consumption: Min: " + minConsumption + " Avg: "
-                    + averageConsumption + " Max: " + maxConsumption);
-            player.sendMessage("Capacity: Min: " + minCapacity + " Avg: "
-                    + averageCapacitySize + " Max: " + maxCapacity);
-            player.sendMessage("Capacity (capacitors only): Min: " + minCapacityOnlyCapacitors + " Avg: " +
-                    averageCapacitySizeOnlyCapacitors + " Max: " + maxCapacityOnlyCapacitors);
-            player.sendMessage("Generation: Min: " + minGeneration + " Avg: "
-                    + averageGeneration + " Max: " + maxGeneration);
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Capacity"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&c[Min] &f" + minCapacity + " J &e[Avg] &f" + averageCapacitySize
+                    + " J &a[Max] &f" + maxCapacity + " J"));
+
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Capacity (capacitors only) "));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&c[Min] &f" + minCapacityOnlyCapacitors + " J &e[Avg] &f"
+                            + averageCapacitySizeOnlyCapacitors + " J &a[Max] &f" + maxCapacityOnlyCapacitors + " J"));
+
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Generation"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&c[Min] &f" + minGeneration + " J &e[Avg] &f" + averageGeneration
+                            + " J &a[Max] &f" + maxGeneration + " J"));
         };
     }
 }
