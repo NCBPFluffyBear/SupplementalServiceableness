@@ -12,7 +12,6 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Abstract
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.SolarGenerator;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -162,7 +161,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
 
                 EnergyNetProvider generator = generators.get(l);
 
-                if(generator instanceof SolarGenerator) {
+                if (generator instanceof SolarGenerator) {
                     SolarGenerator sGenerator = (SolarGenerator) generator;
 
                     int generatedOutput = (sGenerator.getDayEnergy() + sGenerator.getNightEnergy()) / 2;
@@ -185,7 +184,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                 } else {
                     AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
 
-                    int generatedOutput =  aGenerator.getEnergyProduction();
+                    int generatedOutput = aGenerator.getEnergyProduction();
 
                     fullCapacity += aGenerator.getCapacity();
                     currentCharge += aGenerator.getCharge(l);
@@ -204,6 +203,10 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                 }
             }
 
+            minGeneration = Objects.isNull(smallestGenerator) ? 0 : minGeneration;
+            minConsumption = Objects.isNull(smallestConsumer) ? 0 : minConsumption;
+            minCapacity = Objects.isNull(smallestCapacitor) && Objects.isNull(smallestConsumer) ? 0 : minCapacity;
+
             double averageGeneration = (double) joulesPerSecGenerated / (numberOfGenerators == 0 ? 1 : numberOfGenerators);
             double averageConsumption = (double) joulesPerSecConsumed / (numberOfConsumers == 0 ? 1 : numberOfConsumers);
             double averageCapacitySize = (double) fullCapacity / (numberOfCapacitors + numberOfConsumers + numberOfGenerators);
@@ -211,25 +214,84 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
             double averageCapacitySizeOnlyCapacitors = (double) fullCapacityOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
             double averageChargeSizeOnlyCapacitors = (double) currentChargeOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Consumption"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&a[Min] &f" + minConsumption + " J &e[Avg] &f"
-                    + averageConsumption + " J &c[Max] &f" + maxConsumption + " J"));
+                    "&7============ Your Network Report ============"));
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Capacity"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lConsumption"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &f" + minCapacity + " J &e[Avg] &f" + averageCapacitySize
-                    + " J &a[Max] &f" + maxCapacity + " J"));
+                    "&a[Min] &7" + minConsumption + " J/s &e[Avg] &7" + averageConsumption + " J/s &c[Max] &7" + maxConsumption + " J/s"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "\n&5Total consumption: &7" + joulesPerSecConsumed + " J/s"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Number of consumers: &7" + numberOfConsumers));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your largest consumer: &7" + (Objects.isNull(largestConsumer) ? "None" : pretifyId(largestConsumer.getId()))));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your smallest consumer: &7" + (Objects.isNull(smallestConsumer) ? "None" : pretifyId(smallestConsumer.getId()))));
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Capacity (capacitors only) "));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCapacity"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &f" + minCapacityOnlyCapacitors + " J &e[Avg] &f"
-                            + averageCapacitySizeOnlyCapacitors + " J &a[Max] &f" + maxCapacityOnlyCapacitors + " J"));
+                    "&c[Min] &7" + minCapacity + " J &e[Avg] &7" + averageCapacitySize + " J &a[Max] &7" + maxCapacity + " J"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "\n&5Total capacity: &7" + fullCapacity + " J"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Number of capacitors: &7" + (numberOfCapacitors + numberOfConsumers)));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your largest capacitor: &7" + (Objects.isNull(largestCapacitor) ? "None" : pretifyId(largestCapacitor.getId()))));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your smallest capacitor: &7" + (Objects.isNull(smallestCapacitor) ? "None" : pretifyId(smallestCapacitor.getId()))));
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&5Generation"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCapacity &7&o(capacitors only) "));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &f" + minGeneration + " J &e[Avg] &f" + averageGeneration
-                            + " J &a[Max] &f" + maxGeneration + " J"));
+                    "&c[Min] &7" + minCapacityOnlyCapacitors + " J &e[Avg] &7" + averageCapacitySizeOnlyCapacitors + " J &a[Max] &7" + maxCapacityOnlyCapacitors + " J"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "\n&5Total capacity: &7" + fullCapacityOnlyCapacitors + " J"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Number of capacitors: &7" + numberOfCapacitors));
+
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCharge"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&e[Avg] &7" + averageChargeSize + " J"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&e[Avg] &7" + averageChargeSizeOnlyCapacitors + "J &7&o(capacitors only)"));
+
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lGeneration"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&c[Min] &7" + minGeneration + " J/s &e[Avg] &7" + averageGeneration + " J/s &a[Max] &7" + maxGeneration + " J/s"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "\n&5Total generation: &7" + joulesPerSecGenerated + " J/s"));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Number of generators: &7" + numberOfGenerators));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your largest generator: &7" + (Objects.isNull(largestGenerator) ? "None" : pretifyId(largestGenerator.getId()))));
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "&5Your smallest generator: &7" + (Objects.isNull(smallestGenerator) ? "None" : pretifyId(smallestGenerator.getId()))));
+
+            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
+                    "\n&7============================================="));
         };
+    }
+
+    private String pretifyId(String id) {
+        char[] arr = id.replaceAll("_", " ").toLowerCase().toCharArray();
+        boolean foundSpace = true;
+
+        for (int i = 0; i < arr.length; i++) {
+            if (Character.isLetter(arr[i])) {
+                if (foundSpace) {
+                    arr[i] = Character.toUpperCase(arr[i]);
+                    foundSpace = false;
+                }
+            } else {
+                foundSpace = true;
+            }
+        }
+
+        return String.valueOf(arr);
     }
 }
