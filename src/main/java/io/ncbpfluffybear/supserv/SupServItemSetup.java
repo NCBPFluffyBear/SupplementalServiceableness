@@ -10,6 +10,7 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.items.CustomItemStack;
 import io.ncbpfluffybear.supserv.items.EndermanTether;
 import io.ncbpfluffybear.supserv.items.FarmersHoe;
 import io.ncbpfluffybear.supserv.items.LavaSponge;
+import io.ncbpfluffybear.supserv.items.Voltmeter;
 import io.ncbpfluffybear.supserv.items.WateringCan;
 import io.ncbpfluffybear.supserv.machines.AdvancedElectricComposter;
 import io.ncbpfluffybear.supserv.machines.Baler;
@@ -17,7 +18,6 @@ import io.ncbpfluffybear.supserv.machines.ExpGenerator;
 import io.ncbpfluffybear.supserv.machines.HeadGrinder;
 import io.ncbpfluffybear.supserv.objects.NonInteractableItem;
 import io.ncbpfluffybear.supserv.utils.Utils;
-import me.sfiguz7.extratools.ExtraTools;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
@@ -185,6 +185,14 @@ public class SupServItemSetup {
                         new ItemStack(Material.SMOOTH_STONE_SLAB), new ItemStack(Material.STONECUTTER), new ItemStack(Material.SMOOTH_STONE_SLAB),
                         new ItemStack(Material.PISTON), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.PISTON),
                         new ItemStack(Material.IRON_BLOCK), SlimefunItems.MEDIUM_CAPACITOR, new ItemStack(Material.IRON_BLOCK)
+                }
+        ).register(plugin);
+
+        new Voltmeter(SupServItems.SUPSERV_CATEGORY, SupServItems.VOLTMETER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                new ItemStack[] {
+                        SlimefunItems.COPPER_WIRE, SlimefunItems.COPPER_WIRE, SlimefunItems.COPPER_WIRE,
+                        SlimefunItems.COPPER_WIRE, new ItemStack(Material.CLOCK), SlimefunItems.COPPER_WIRE,
+                        SlimefunItems.COPPER_WIRE, SlimefunItems.COPPER_WIRE, SlimefunItems.COPPER_WIRE
                 }
         ).register(plugin);
 
