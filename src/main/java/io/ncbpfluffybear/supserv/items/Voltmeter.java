@@ -257,7 +257,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
                     "&e[Avg] &7" + averageChargeSize + " J"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&e[Avg] &7" + averageChargeSizeOnlyCapacitors + "J &7&o(capacitors only)"));
+                    "&e[Avg] &7" + averageChargeSizeOnlyCapacitors + " J &7&o(capacitors only)"));
 
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lGeneration"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
