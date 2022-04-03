@@ -215,7 +215,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
             double averageChargeSizeOnlyCapacitors = (double) currentChargeOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
 
             player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&7============ Your Network Report ============"));
+                    "&7============= Your Network Report ============="));
 
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lConsumption"));
             player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
