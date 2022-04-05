@@ -11,8 +11,9 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.AbstractEnergyProvider;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.SolarGenerator;
+import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import org.bukkit.ChatColor;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
@@ -20,261 +21,461 @@ import org.bukkit.inventory.ItemStack;
 
 import javax.annotation.Nonnull;
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.logging.Level;
 
 @SuppressWarnings({"unchecked", "unsafe"})
 public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
 
+    enum VoltmeterMode {CONSUMERS, CAPACITORS, GENERATORS, CHARGE, COMPONENTS}
+
+    private VoltmeterMode mode;
+
     public Voltmeter(ItemGroup itemGroup, SlimefunItemStack item, RecipeType recipeType, ItemStack[] recipe) {
         super(itemGroup, item, recipeType, recipe);
+
+        this.mode = VoltmeterMode.CONSUMERS;
     }
 
     @Nonnull
     @Override
     public ItemUseHandler getItemHandler() {
         return e -> {
+            Player player = e.getPlayer();
             ItemStack item = e.getItem();
             Optional<Block> block = e.getClickedBlock();
+
+            if (player.isSneaking()) {
+                switch (mode) {
+                    case CONSUMERS:
+                        mode = VoltmeterMode.CAPACITORS;
+                        break;
+                    case CAPACITORS:
+                        mode = VoltmeterMode.GENERATORS;
+                        break;
+                    case GENERATORS:
+                        mode = VoltmeterMode.CHARGE;
+                        break;
+                    case CHARGE:
+                        mode = VoltmeterMode.COMPONENTS;
+                        break;
+                    case COMPONENTS:
+                        mode = VoltmeterMode.CONSUMERS;
+                        break;
+                }
+
+                Utils.sendChatMsg(player, "&5Selected mode: &7" + pretifyId(mode.toString()));
+                return;
+            }
 
             if (!isItem(item) || !block.isPresent()) {
                 return;
             }
 
-            Player player = e.getPlayer();
             EnergyNet energyNet = EnergyNet.getNetworkFromLocation(block.get().getLocation());
 
             if (Objects.isNull(energyNet)) {
                 return;
             }
 
-            Map<Location, EnergyNetProvider> generators = null;
-            Map<Location, EnergyNetComponent> consumers = null;
-            Map<Location, EnergyNetComponent> capacitors = null;
-
-            try {
-                Field generatorsField = energyNet.getClass().getDeclaredField("generators");
-                Field consumersField = energyNet.getClass().getDeclaredField("consumers");
-                Field capacitorsField = energyNet.getClass().getDeclaredField("capacitors");
-
-                generatorsField.setAccessible(true);
-                consumersField.setAccessible(true);
-                capacitorsField.setAccessible(true);
-
-                generators = (Map<Location, EnergyNetProvider>) generatorsField.get(energyNet);
-                consumers = (Map<Location, EnergyNetComponent>) consumersField.get(energyNet);
-                capacitors = (Map<Location, EnergyNetComponent>) capacitorsField.get(energyNet);
-
-            } catch (NoSuchFieldException | IllegalAccessException ex) {
-                ex.printStackTrace();
+            if (mode == VoltmeterMode.CONSUMERS) {
+                consumerStatistics(player, energyNet);
+            } else if (mode == VoltmeterMode.CAPACITORS) {
+                capacitorStatistics(player, energyNet);
+            } else if (mode == VoltmeterMode.GENERATORS) {
+                generatorStatistics(player, energyNet);
+            } else if (mode == VoltmeterMode.CHARGE) {
+                chargeStatistics(player, energyNet);
+            } else {
+                elementStatistics(player, energyNet);
             }
 
-            if (Objects.isNull(capacitors) || Objects.isNull(consumers) || Objects.isNull(generators)) {
-                return;
-            }
+        };
+    }
 
-            int numberOfCapacitors = capacitors.size();
-            int numberOfConsumers = consumers.size();
-            int numberOfGenerators = generators.size();
+    private void consumerStatistics(Player player, EnergyNet energyNet) {
+        Map<Location, EnergyNetComponent> consumers = null;
 
-            int fullCapacity = 0;
-            int currentCharge = 0;
-            int fullCapacityOnlyCapacitors = 0;
-            int currentChargeOnlyCapacitors = 0;
+        try {
+            Field consumersField = energyNet.getClass().getDeclaredField("consumers");
+            consumersField.setAccessible(true);
+            consumers = (Map<Location, EnergyNetComponent>) consumersField.get(energyNet);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            Bukkit.getLogger().log(Level.SEVERE,
+                    "An error has occurred while trying to access private fields: " + System.lineSeparator() + ex);
+        }
 
-            int maxCapacity = 0;
-            int maxGeneration = 0;
-            int maxConsumption = 0;
+        int numberOfConsumers = consumers.size();
+        int joulesPerSecConsumed = 0;
+        int minConsumption = Integer.MAX_VALUE;
+        int maxConsumption = 0;
 
-            EnergyNetComponent largestCapacitor = null;
-            EnergyNetComponent largestConsumer = null;
-            EnergyNetComponent largestGenerator = null;
+        EnergyNetComponent smallestConsumer = null;
+        EnergyNetComponent largestConsumer = null;
 
-            int minCapacity = Integer.MAX_VALUE;
-            int minGeneration = Integer.MAX_VALUE;
-            int minConsumption = Integer.MAX_VALUE;
-
-            EnergyNetComponent smallestCapacitor = null;
-            EnergyNetComponent smallestConsumer = null;
-            EnergyNetComponent smallestGenerator = null;
-
-            int joulesPerSecGenerated = 0;
-            int joulesPerSecConsumed = 0;
-
-            for (Location l : capacitors.keySet()) {
-                Capacitor capacitor = (Capacitor) capacitors.get(l);
-
-                int capacity = capacitor.getCapacity();
-                int charge = capacitor.getCharge(l);
-
-                fullCapacity += capacity;
-                currentCharge += charge;
-                fullCapacityOnlyCapacitors += capacity;
-                currentChargeOnlyCapacitors += charge;
-
-                if (capacity > maxCapacity) {
-                    maxCapacity = capacity;
-                    largestCapacitor = capacitor;
-                }
-
-                if (capacity < minCapacity) {
-                    minCapacity = capacity;
-                    smallestCapacitor = capacitor;
-                }
-
-            }
-
-            int minCapacityOnlyCapacitors = minCapacity;
-            int maxCapacityOnlyCapacitors = maxCapacity;
-
-            for (Location l : consumers.keySet()) {
-                AContainer consumer = (AContainer) consumers.get(l);
+        for (Location loc : consumers.keySet()) {
+            if (consumers.get(loc) instanceof AContainer) {
+                AContainer consumer = (AContainer) consumers.get(loc);
 
                 int consumption = consumer.getEnergyConsumption();
 
-                fullCapacity += consumer.getCapacity();
-                currentCharge += consumer.getCharge(l);
+                joulesPerSecConsumed += consumption;
 
-                joulesPerSecConsumed += consumer.getEnergyConsumption();
-
-                if (consumer.getCapacity() > maxCapacity) {
-                    maxCapacity = consumer.getCapacity();
-                }
-
-                if (consumer.getCapacity() < minCapacity) {
-                    minCapacity = consumer.getCapacity();
+                if (consumption < minConsumption) {
+                    minConsumption = consumption;
+                    smallestConsumer = consumer;
                 }
 
                 if (consumption > maxConsumption) {
                     maxConsumption = consumption;
                     largestConsumer = consumer;
                 }
+            }
+        }
 
-                if (consumption < minConsumption) {
-                    minConsumption = consumption;
-                    smallestConsumer = consumer;
-                }
+        Utils.sendChatMsg(player, "&7========== &5Consumers &7==========");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&5Number of consumers: &7" + numberOfConsumers);
+        Utils.sendChatMsg(player, "&5Joules consumed: &7" + joulesPerSecConsumed + " J/s");
+        Utils.sendChatMsg(player, "&5Smallest consumer: &7" +
+                (Objects.isNull(smallestConsumer) ? "None" : pretifyId(smallestConsumer.getId())) +
+                " &5with &7" + (Objects.isNull(smallestConsumer) ? "0" : minConsumption) + " J/s");
+        Utils.sendChatMsg(player, "&5Smallest consumer: &7" +
+                (Objects.isNull(largestConsumer) ? "None" : pretifyId(largestConsumer.getId())) +
+                " &5with &7" + maxConsumption + " J/s");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&7===============================");
+    }
+
+    private void capacitorStatistics(Player player, EnergyNet energyNet) {
+        Map<Location, EnergyNetComponent> capacitors = null;
+
+        try {
+            Field capacitorsField = energyNet.getClass().getDeclaredField("capacitors");
+            capacitorsField.setAccessible(true);
+            capacitors = (Map<Location, EnergyNetComponent>) capacitorsField.get(energyNet);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            Bukkit.getLogger().log(Level.SEVERE,
+                    "An error has occurred while trying to access private fields: " + System.lineSeparator() + ex);
+        }
+
+        int numberOfCapacitors = capacitors.size();
+        int capacity = 0;
+        int charge = 0;
+        int minCapacity = Integer.MAX_VALUE;
+        int maxCapacity = 0;
+
+        EnergyNetComponent smallestCapacitor = null;
+        EnergyNetComponent largestCapacitor = null;
+
+        for (Location loc : capacitors.keySet()) {
+            Capacitor capacitor = (Capacitor) capacitors.get(loc);
+
+            int currCapacity = capacitor.getCapacity();
+
+            charge += capacitor.getCharge(loc);
+            capacity += currCapacity;
+
+            if (currCapacity < minCapacity) {
+                minCapacity = currCapacity;
+                smallestCapacitor = capacitor;
             }
 
-            for (Location l : generators.keySet()) {
+            if (currCapacity > maxCapacity) {
+                maxCapacity = currCapacity;
+                largestCapacitor = capacitor;
+            }
+        }
 
-                EnergyNetProvider generator = generators.get(l);
+        Utils.sendChatMsg(player, "&7========== &5Capacitors &7==========");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&5Number of capacitors: &7" + numberOfCapacitors);
+        Utils.sendChatMsg(player, "&5Capacity: &7" + capacity + " J");
+        Utils.sendChatMsg(player, "&5Current charge: &7" + charge + " J &o("
+                + ((double) Math.round(((double) charge / capacity * 100) * 100) / 100) + "%)");
+        Utils.sendChatMsg(player, "&5Smallest capacitor: &7" +
+                (Objects.isNull(smallestCapacitor) ? "None" : pretifyId(smallestCapacitor.getId())) +
+                " &5with &7" + (Objects.isNull(smallestCapacitor) ? "0" : minCapacity) + " J");
+        Utils.sendChatMsg(player, "&5Largest capacitor: &7" +
+                (Objects.isNull(largestCapacitor) ? "None" : pretifyId(largestCapacitor.getId())) +
+                " &5with &7" + maxCapacity + " J");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&7===============================");
+    }
 
-                if (generator instanceof SolarGenerator) {
-                    SolarGenerator sGenerator = (SolarGenerator) generator;
+    private void generatorStatistics(Player player, EnergyNet energyNet) {
+        Map<Location, EnergyNetProvider> generators = null;
 
-                    int generatedOutput = (sGenerator.getDayEnergy() + sGenerator.getNightEnergy()) / 2;
+        try {
+            Field generatorsField = energyNet.getClass().getDeclaredField("generators");
+            generatorsField.setAccessible(true);
+            generators = (Map<Location, EnergyNetProvider>) generatorsField.get(energyNet);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            Bukkit.getLogger().log(Level.SEVERE,
+                    "An error has occurred while trying to access private fields: " + System.lineSeparator() + ex);
+        }
 
-                    fullCapacity += sGenerator.getCapacity();
-                    currentCharge += sGenerator.getCharge(l);
+        int numberOfGenerators = generators.size();
+        int joulesGeneratedPerSec = 0;
+        int minGeneration = Integer.MAX_VALUE;
+        int maxGeneration = 0;
 
-                    joulesPerSecGenerated += generatedOutput;
+        EnergyNetProvider smallestGenerator = null;
+        EnergyNetProvider largestGenerator = null;
 
-                    if (generatedOutput > maxGeneration) {
-                        maxGeneration = generatedOutput;
-                        largestGenerator = sGenerator;
-                    }
+        for (Location l : generators.keySet()) {
+            EnergyNetProvider generator = generators.get(l);
 
-                    if (generatedOutput < minGeneration) {
-                        minGeneration = generatedOutput;
-                        smallestGenerator = sGenerator;
-                    }
+            if (generator instanceof SolarGenerator) {
+                SolarGenerator sGenerator = (SolarGenerator) generator;
 
-                } else {
-                    AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
+                int generatedOutput = (sGenerator.getDayEnergy() + sGenerator.getNightEnergy()) / 2;
 
-                    int generatedOutput = aGenerator.getEnergyProduction();
+                joulesGeneratedPerSec += generatedOutput;
 
-                    fullCapacity += aGenerator.getCapacity();
-                    currentCharge += aGenerator.getCharge(l);
+                if (generatedOutput > maxGeneration) {
+                    maxGeneration = generatedOutput;
+                    largestGenerator = sGenerator;
+                }
 
-                    joulesPerSecGenerated += generatedOutput;
+                if (generatedOutput < minGeneration) {
+                    minGeneration = generatedOutput;
+                    smallestGenerator = sGenerator;
+                }
 
-                    if (generatedOutput > maxGeneration) {
-                        maxGeneration = generatedOutput;
-                        largestGenerator = aGenerator;
-                    }
+            } else {
+                AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
 
-                    if (generatedOutput < minGeneration) {
-                        minGeneration = generatedOutput;
-                        smallestGenerator = aGenerator;
-                    }
+                int generatedOutput = aGenerator.getEnergyProduction();
+
+                joulesGeneratedPerSec += generatedOutput;
+
+                if (generatedOutput > maxGeneration) {
+                    maxGeneration = generatedOutput;
+                    largestGenerator = aGenerator;
+                }
+
+                if (generatedOutput < minGeneration) {
+                    minGeneration = generatedOutput;
+                    smallestGenerator = aGenerator;
                 }
             }
+        }
 
-            minGeneration = Objects.isNull(smallestGenerator) ? 0 : minGeneration;
-            minConsumption = Objects.isNull(smallestConsumer) ? 0 : minConsumption;
-            minCapacity = Objects.isNull(smallestCapacitor) && Objects.isNull(smallestConsumer) ? 0 : minCapacity;
+        Utils.sendChatMsg(player, "&7========== &5Generators &7==========");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&5Number of capacitors: &7" + numberOfGenerators);
+        Utils.sendChatMsg(player, "&5Generated output: &7" + joulesGeneratedPerSec + " J/s");
+        Utils.sendChatMsg(player, "&5Smallest generator: &7" +
+                (Objects.isNull(smallestGenerator) ? "None" : pretifyId(smallestGenerator.getId())) +
+                " &5with &7" + (Objects.isNull(smallestGenerator) ? "0" : minGeneration) + " J/s");
+        Utils.sendChatMsg(player, "&5Largest capacitor: &7" +
+                (Objects.isNull(largestGenerator) ? "None" : pretifyId(largestGenerator.getId())) +
+                " &5with &7" + maxGeneration + " J/s");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&7===============================");
+    }
 
-            double averageGeneration = (double) joulesPerSecGenerated / (numberOfGenerators == 0 ? 1 : numberOfGenerators);
-            double averageConsumption = (double) joulesPerSecConsumed / (numberOfConsumers == 0 ? 1 : numberOfConsumers);
-            double averageCapacitySize = (double) fullCapacity / (numberOfCapacitors + numberOfConsumers + numberOfGenerators);
-            double averageChargeSize = (double) currentCharge / (numberOfCapacitors + numberOfConsumers + numberOfGenerators);
-            double averageCapacitySizeOnlyCapacitors = (double) fullCapacityOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
-            double averageChargeSizeOnlyCapacitors = (double) currentChargeOnlyCapacitors / (numberOfCapacitors == 0 ? 1 : numberOfCapacitors);
+    private void chargeStatistics(Player player, EnergyNet energyNet) {
+        Map<Location, EnergyNetComponent> capacitors = null;
+        Map<Location, EnergyNetComponent> consumers = null;
+        Map<Location, EnergyNetProvider> generators = null;
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&7============= Your Network Report ============="));
+        try {
+            Field capacitorsField = energyNet.getClass().getDeclaredField("capacitors");
+            Field consumersField = energyNet.getClass().getDeclaredField("consumers");
+            Field generatorsField = energyNet.getClass().getDeclaredField("generators");
+            capacitorsField.setAccessible(true);
+            consumersField.setAccessible(true);
+            generatorsField.setAccessible(true);
+            capacitors = (Map<Location, EnergyNetComponent>) capacitorsField.get(energyNet);
+            consumers = (Map<Location, EnergyNetComponent>) consumersField.get(energyNet);
+            generators = (Map<Location, EnergyNetProvider>) generatorsField.get(energyNet);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            Bukkit.getLogger().log(Level.SEVERE,
+                    "An error has occurred while trying to access private fields: " + System.lineSeparator() + ex);
+        }
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lConsumption"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&a[Min] &7" + minConsumption + " J/s &e[Avg] &7" + averageConsumption + " J/s &c[Max] &7" + maxConsumption + " J/s"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "\n&5Total consumption: &7" + joulesPerSecConsumed + " J/s"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Number of consumers: &7" + numberOfConsumers));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your largest consumer: &7" + (Objects.isNull(largestConsumer) ? "None" : pretifyId(largestConsumer.getId()))));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your smallest consumer: &7" + (Objects.isNull(smallestConsumer) ? "None" : pretifyId(smallestConsumer.getId()))));
+        int numberOfComponents = capacitors.size() + consumers.size() + generators.size();
+        int capacity = 0;
+        int charge = 0;
+        int minCharge = Integer.MAX_VALUE;
+        int maxCharge = 0;
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCapacity"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &7" + minCapacity + " J &e[Avg] &7" + averageCapacitySize + " J &a[Max] &7" + maxCapacity + " J"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "\n&5Total capacity: &7" + fullCapacity + " J"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Number of capacitors: &7" + (numberOfCapacitors + numberOfConsumers)));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your largest capacitor: &7" + (Objects.isNull(largestCapacitor) ? "None" : pretifyId(largestCapacitor.getId()))));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your smallest capacitor: &7" + (Objects.isNull(smallestCapacitor) ? "None" : pretifyId(smallestCapacitor.getId()))));
+        EnergyNetComponent smallestChargeComponent = null;
+        EnergyNetComponent largestChargeComponent = null;
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCapacity &7&o(capacitors only) "));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &7" + minCapacityOnlyCapacitors + " J &e[Avg] &7" + averageCapacitySizeOnlyCapacitors + " J &a[Max] &7" + maxCapacityOnlyCapacitors + " J"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "\n&5Total capacity: &7" + fullCapacityOnlyCapacitors + " J"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Number of capacitors: &7" + numberOfCapacitors));
+        for (Location loc : capacitors.keySet()) {
+            Capacitor capacitor = (Capacitor) capacitors.get(loc);
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lCharge"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&e[Avg] &7" + averageChargeSize + " J"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&e[Avg] &7" + averageChargeSizeOnlyCapacitors + " J &7&o(capacitors only)"));
+            int currCharge = capacitor.getCharge(loc);
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "\n&5&lGeneration"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&', "&7&l--------------------"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&c[Min] &7" + minGeneration + " J/s &e[Avg] &7" + averageGeneration + " J/s &a[Max] &7" + maxGeneration + " J/s"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "\n&5Total generation: &7" + joulesPerSecGenerated + " J/s"));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Number of generators: &7" + numberOfGenerators));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your largest generator: &7" + (Objects.isNull(largestGenerator) ? "None" : pretifyId(largestGenerator.getId()))));
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "&5Your smallest generator: &7" + (Objects.isNull(smallestGenerator) ? "None" : pretifyId(smallestGenerator.getId()))));
+            capacity += capacitor.getCapacity();
+            charge += currCharge;
 
-            player.sendMessage(ChatColor.translateAlternateColorCodes('&',
-                    "\n&7============================================="));
-        };
+            if (currCharge < minCharge) {
+                minCharge = currCharge;
+                smallestChargeComponent = capacitor;
+            }
+
+            if (currCharge > maxCharge) {
+                maxCharge = currCharge;
+                largestChargeComponent = capacitor;
+            }
+        }
+
+        for (Location loc : consumers.keySet()) {
+            EnergyNetComponent consumer = consumers.get(loc);
+
+            int currCharge = consumer.getCharge(loc);
+
+            capacity += consumer.getCapacity();
+            charge += currCharge;
+
+            if (currCharge < minCharge) {
+                minCharge = currCharge;
+                smallestChargeComponent = consumer;
+            }
+
+            if (currCharge > maxCharge) {
+                maxCharge = currCharge;
+                largestChargeComponent = consumer;
+            }
+        }
+
+        for (Location loc : generators.keySet()) {
+            EnergyNetProvider generator = generators.get(loc);
+
+            int currCharge = generator.getCharge(loc);
+
+            capacity += generator.getCapacity();
+            charge += currCharge;
+
+            if (currCharge < minCharge) {
+                minCharge = currCharge;
+                smallestChargeComponent = generator;
+            }
+
+            if (currCharge > maxCharge) {
+                maxCharge = currCharge;
+                largestChargeComponent = generator;
+            }
+        }
+
+        Utils.sendChatMsg(player, "&7========== &5Charge &7==========");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&5Number of components: &7" + numberOfComponents);
+        Utils.sendChatMsg(player, "&5Capacity: &7" + capacity + " J");
+        Utils.sendChatMsg(player, "&5Current charge: &7" + charge + " J &o("
+                + ((double) Math.round(((double) charge / capacity * 100) * 100) / 100) + "%)");
+        Utils.sendChatMsg(player, "&5Smallest charge: &7" +
+                (Objects.isNull(smallestChargeComponent) ? "None" : pretifyId(smallestChargeComponent.getId())) +
+                " &5with &7" + (Objects.isNull(smallestChargeComponent) ? "0" : minCharge) + " J");
+        Utils.sendChatMsg(player, "&5Largest charge: &7" +
+                (Objects.isNull(largestChargeComponent) ? "None" : pretifyId(largestChargeComponent.getId())) +
+                " &5with &7" + maxCharge + " J");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&7============================");
+    }
+
+    private void elementStatistics(Player player, EnergyNet energyNet) {
+        Map<Location, EnergyNetComponent> capacitors = null;
+        Map<Location, EnergyNetComponent> consumers = null;
+        Map<Location, EnergyNetProvider> generators = null;
+
+        try {
+            Field capacitorsField = energyNet.getClass().getDeclaredField("capacitors");
+            Field consumersField = energyNet.getClass().getDeclaredField("consumers");
+            Field generatorsField = energyNet.getClass().getDeclaredField("generators");
+            capacitorsField.setAccessible(true);
+            consumersField.setAccessible(true);
+            generatorsField.setAccessible(true);
+            capacitors = (Map<Location, EnergyNetComponent>) capacitorsField.get(energyNet);
+            consumers = (Map<Location, EnergyNetComponent>) consumersField.get(energyNet);
+            generators = (Map<Location, EnergyNetProvider>) generatorsField.get(energyNet);
+        } catch (NoSuchFieldException | IllegalAccessException ex) {
+            Bukkit.getLogger().log(Level.SEVERE,
+                    "An error has occurred while trying to access private fields: " + System.lineSeparator() + ex);
+        }
+
+        Map<String, Integer> consumersSorted = new HashMap<>();
+        Map<String, Integer> capacitorsSorted = new HashMap<>();
+        Map<String, Integer> generatorsSorted = new HashMap<>();
+
+        int numberOfComponents = capacitors.size() + consumers.size() + generators.size();
+
+        for (Location loc : capacitors.keySet()) {
+            EnergyNetComponent capacitor = capacitors.get(loc);
+
+            if (capacitorsSorted.containsKey(capacitor.getId())) {
+                capacitorsSorted.replace(capacitor.getId(), capacitorsSorted.get(capacitor.getId()) + 1);
+            } else {
+                capacitorsSorted.put(capacitor.getId(), 1);
+            }
+        }
+
+        for (Location loc : consumers.keySet()) {
+            EnergyNetComponent consumer = consumers.get(loc);
+
+            if (consumersSorted.containsKey(consumer.getId())) {
+                consumersSorted.replace(consumer.getId(), consumersSorted.get(consumer.getId()) + 1);
+            } else {
+                consumersSorted.put(consumer.getId(), 1);
+            }
+        }
+
+        for (Location loc : generators.keySet()) {
+            EnergyNetProvider generator = generators.get(loc);
+
+            if (generatorsSorted.containsKey(generator.getId())) {
+                generatorsSorted.replace(generator.getId(), generatorsSorted.get(generator.getId()) + 1);
+            } else {
+                generatorsSorted.put(generator.getId(), 1);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        for (String key : capacitorsSorted.keySet()) {
+            sb.append(pretifyId(key));
+            sb.append(" &ox");
+            sb.append(capacitorsSorted.get(key));
+            sb.append(", &r&7");
+        }
+
+        String capacitorsList = sb.toString();
+        sb.setLength(0);
+
+        for (String key : consumersSorted.keySet()) {
+            sb.append(pretifyId(key));
+            sb.append(" &ox");
+            sb.append(consumersSorted.get(key));
+            sb.append(", &r&7");
+        }
+
+        String consumersList = sb.toString();
+        sb.setLength(0);
+
+        for (String key : generatorsSorted.keySet()) {
+            sb.append(pretifyId(key));
+            sb.append(" &ox");
+            sb.append(generatorsSorted.get(key));
+            sb.append(", &r&7");
+        }
+
+        String generatorsList = sb.toString();
+
+        Utils.sendChatMsg(player, "&7========== &5Components &7==========");
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&5Number of components: &7" + numberOfComponents);
+        Utils.sendChatMsg(player, "&5Consumers: &7" + consumersList.substring(0, consumersList.length() - 6));
+        Utils.sendChatMsg(player, "&5Capacitors: &7" + capacitorsList.substring(0, capacitorsList.length() - 6));
+        Utils.sendChatMsg(player, "&5Generators: &7" + generatorsList.substring(0, generatorsList.length() - 6));
+        Utils.sendChatMsg(player, "");
+        Utils.sendChatMsg(player, "&7============================");
     }
 
     private String pretifyId(String id) {

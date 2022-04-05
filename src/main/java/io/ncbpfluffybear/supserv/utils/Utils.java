@@ -11,6 +11,10 @@ public class Utils {
         p.sendMessage(ChatColor.GREEN + "[SupplementalServiceableness] " + ChatColors.color(message));
     }
 
+    public static void sendChatMsg(Player p, String message) {
+        p.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
+    }
+
     public static ItemStack[] build3x3Recipe(ItemStack item) {
         return new ItemStack[] {
             item, item, item, item, item, item, item, item, item
