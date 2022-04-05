@@ -63,7 +63,7 @@ public class HeadGrinder extends SlimefunItem implements EnergyNetComponent {
             Material.MUSIC_DISC_BLOCKS, Material.MUSIC_DISC_CHIRP, Material.MUSIC_DISC_MALL,
             Material.MUSIC_DISC_MELLOHI, Material.MUSIC_DISC_FAR, Material.MUSIC_DISC_PIGSTEP,
             Material.MUSIC_DISC_STAL, Material.MUSIC_DISC_STRAD, Material.MUSIC_DISC_WAIT,
-            Material.MUSIC_DISC_WARD
+            Material.MUSIC_DISC_WARD, Material.MUSIC_DISC_OTHERSIDE
     };
 
     private static final ItemStack[] ZOMBIE_MAX_DROPS = new ItemStack[]{new ItemStack(Material.ROTTEN_FLESH, 2)};
