@@ -143,7 +143,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
         Utils.sendChatMsg(player, "&5Smallest consumer: &7" +
                 (Objects.isNull(smallestConsumer) ? "None" : pretifyId(smallestConsumer.getId())) +
                 " &5with &7" + (Objects.isNull(smallestConsumer) ? "0" : minConsumption) + " J/s");
-        Utils.sendChatMsg(player, "&5Smallest consumer: &7" +
+        Utils.sendChatMsg(player, "&5Largest consumer: &7" +
                 (Objects.isNull(largestConsumer) ? "None" : pretifyId(largestConsumer.getId())) +
                 " &5with &7" + maxConsumption + " J/s");
         Utils.sendChatMsg(player, "");
@@ -245,8 +245,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                     minGeneration = generatedOutput;
                     smallestGenerator = sGenerator;
                 }
-
-            } else {
+            } else if (generator instanceof AbstractEnergyProvider) {
                 AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
 
                 int generatedOutput = aGenerator.getEnergyProduction();

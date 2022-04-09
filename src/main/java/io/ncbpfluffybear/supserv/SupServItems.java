@@ -186,9 +186,10 @@ public class SupServItems {
             "",
             "&7This tool shows you statistics",
             "&7about your energy network",
+            "&7&o(might not work with specific machines)",
             "",
             "&7> &eRight click &7your network component",
-            "&7> &eSneak + Right click &7to change mode"
+            "&7> &eShift + Right click &7to change mode"
     );
 
     public static final SlimefunItemStack COMPRESSED_COBBLESTONE = new SlimefunItemStack("COMPRESSED_COBBLESTONE",
