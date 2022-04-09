@@ -11,10 +11,8 @@ import io.github.thebusybiscuit.slimefun4.implementation.items.SimpleSlimefunIte
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.AbstractEnergyProvider;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.Capacitor;
 import io.github.thebusybiscuit.slimefun4.implementation.items.electric.generators.SolarGenerator;
-import io.github.thebusybiscuit.slimefun4.implementation.items.electric.reactors.Reactor;
 import io.ncbpfluffybear.supserv.utils.Utils;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AContainer;
-import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.abstractItems.AGenerator;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -247,7 +245,7 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
                     minGeneration = generatedOutput;
                     smallestGenerator = sGenerator;
                 }
-            } else if (generator instanceof AbstractEnergyProvider){
+            } else if (generator instanceof AbstractEnergyProvider) {
                 AbstractEnergyProvider aGenerator = (AbstractEnergyProvider) generator;
 
                 int generatedOutput = aGenerator.getEnergyProduction();
