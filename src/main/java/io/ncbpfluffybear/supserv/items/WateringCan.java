@@ -13,12 +13,10 @@ import io.github.thebusybiscuit.slimefun4.libraries.dough.protection.Interaction
 import io.ncbpfluffybear.supserv.SupServPlugin;
 import io.ncbpfluffybear.supserv.utils.Constants;
 import io.ncbpfluffybear.supserv.utils.Utils;
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.annotation.Nonnull;
 import me.mrCookieSlime.Slimefun.api.BlockStorage;
-import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.FluidCollisionMode;
 import org.bukkit.Location;
@@ -33,7 +31,6 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.Ageable;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Player;
-import org.bukkit.event.world.StructureGrowEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
@@ -55,7 +52,6 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
     public final DoubleRangeSetting sugarCaneSuccessChance = new DoubleRangeSetting(this, "sugar-cane-success-chance", 0, 0.3, 1);
     public final DoubleRangeSetting cropSuccessChance = new DoubleRangeSetting(this, "crop-success-chance", 0, 0.3, 1);
     public final DoubleRangeSetting treeSuccessChance = new DoubleRangeSetting(this, "tree-success-chance", 0, 0.3, 1);
-    public final DoubleRangeSetting exoticGardenSuccessChance = new DoubleRangeSetting(this, "exotic-garden-success-chance", 0, 0.3, 1);
 
     private static final NamespacedKey usageKey = new NamespacedKey(SupServPlugin.getInstance(), "watering_can_usage");
 
@@ -63,14 +59,14 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
                        ItemStack[] recipe, canType size) {
         super(category, item, recipeType, recipe);
         this.canLevel = size;
-        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
+        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance);
     }
 
     public WateringCan(ItemGroup category, SlimefunItemStack item, RecipeType recipeType,
                        ItemStack[] recipe, canType size, ItemStack recipeOutput) {
         super(category, item, recipeType, recipe, recipeOutput);
         this.canLevel = size;
-        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance, exoticGardenSuccessChance);
+        addItemSetting(sugarCaneSuccessChance, cropSuccessChance, treeSuccessChance);
     }
 
     @Nonnull
@@ -140,7 +136,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
 
                 }
 
-            // Crops
+                // Crops
             } else if (blockData instanceof Ageable) {
 
                 // Check if can has water
@@ -168,8 +164,8 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
 
                 // Trees
             } else if (Tag.SAPLINGS.isTagged(b.getType()) ||
-                Material.BROWN_MUSHROOM == b.getType() ||
-                Material.RED_MUSHROOM == b.getType()) {
+                    Material.BROWN_MUSHROOM == b.getType() ||
+                    Material.RED_MUSHROOM == b.getType()) {
 
                 // Check if can has water
                 if (getRemainingUses(item, p, true) < 1) {
@@ -181,19 +177,7 @@ public class WateringCan extends SimpleSlimefunItem<ItemUseHandler> implements N
                 Material saplingMaterial = b.getType();
 
                 if (BlockStorage.hasBlockInfo(b)) {
-                    if (canLevel == canType.STONE) {
-                        Utils.send(p, "&cStone watering cans can not grow ExoticGarden plants!");
-                        return;
-                    }
-
-                    if (random <= exoticGardenSuccessChance.getValue()) {
-                        Bukkit.getPluginManager().callEvent(new StructureGrowEvent(
-                                b.getLocation(), getTreeFromSapling(saplingMaterial), false, p, Collections.singletonList(b.getState())
-                        ));
-                        blockLocation.getWorld().playEffect(blockLocation, Effect.VILLAGER_PLANT_GROW, 0);
-
-                    }
-
+                    return; // Prevent use on exotic garden
                 } else {
 
                     if (Constants.SERVER_VERSION < 1163) {
