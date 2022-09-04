@@ -231,6 +231,11 @@ public class SupServItemSetup {
                 new CustomItemStack(SupServItems.SEXTUPLE_COMPRESSED_COBBLESTONE, 9)
         }).register(plugin);
 
+        new SlimefunItem(SupServItems.SUPSERV_CATEGORY, SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE,
+                RecipeType.COMPRESSOR, new ItemStack[] {
+                new CustomItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)
+        }).register(plugin);
+
         // Grind Stone
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
                         new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)},
@@ -310,7 +315,7 @@ public class SupServItemSetup {
 
         ((MultiBlockMachine) SlimefunItems.COMPRESSOR.getItem()).addRecipe(new ItemStack[] {
                         new SlimefunItemStack(SupServItems.SEPTUPLE_COMPRESSED_COBBLESTONE, 9)},
-                new SlimefunItemStack(SupServItems.QUADRUPLE_COMPRESSED_COBBLESTONE, 1)
+                new SlimefunItemStack(SupServItems.OCTUPLE_COMPRESSED_COBBLESTONE, 1)
         );
 
         new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_SEA_LANTERN,
