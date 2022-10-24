@@ -341,6 +341,30 @@ public class SupServItemSetup {
                 SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
         },  new SlimefunItemStack(SupServItems.WITHER_PROOF_SHROOMLIGHT, 16)
         ).register(plugin);
+
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_PEARLESCENT_FROGLIGHT,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.PEARLESCENT_FROGLIGHT), SlimefunItems.WITHER_PROOF_GLASS,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+        },  new SlimefunItemStack(SupServItems.WITHER_PROOF_PEARLESCENT_FROGLIGHT, 16)
+        ).register(plugin);
+
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_VERDANT_FROGLIGHT,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.VERDANT_FROGLIGHT), SlimefunItems.WITHER_PROOF_GLASS,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+        },  new SlimefunItemStack(SupServItems.WITHER_PROOF_VERDANT_FROGLIGHT, 16)
+        ).register(plugin);
+
+        new WitherProofBlock(SupServItems.SUPSERV_CATEGORY, SupServItems.WITHER_PROOF_OCHRE_FROGLIGHT,
+                RecipeType.ENHANCED_CRAFTING_TABLE, new ItemStack[] {
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+                SlimefunItems.WITHER_PROOF_GLASS, new ItemStack(Material.OCHRE_FROGLIGHT), SlimefunItems.WITHER_PROOF_GLASS,
+                SlimefunItems.WITHER_PROOF_OBSIDIAN, SlimefunItems.WITHER_PROOF_GLASS, SlimefunItems.WITHER_PROOF_OBSIDIAN,
+        },  new SlimefunItemStack(SupServItems.WITHER_PROOF_OCHRE_FROGLIGHT, 16)
+        ).register(plugin);
     }
 
 }

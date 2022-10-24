@@ -294,6 +294,36 @@ public class SupServItems {
             "&9Suggested by GamingRabbit17"
     );
 
+    public static final SlimefunItemStack WITHER_PROOF_PEARLESCENT_FROGLIGHT = new SlimefunItemStack("WP_PEARLESCENT_FROGLIGHT",
+            Material.PEARLESCENT_FROGLIGHT,
+            "&3Wither-Proof Pearlescent Froglight",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by Xanolok"
+    );
+
+    public static final SlimefunItemStack WITHER_PROOF_VERDANT_FROGLIGHT = new SlimefunItemStack("WP_VERDANT_FROGLIGHT",
+            Material.VERDANT_FROGLIGHT,
+            "&3Wither-Proof Verdant Froglight",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by Xanolok"
+    );
+
+    public static final SlimefunItemStack WITHER_PROOF_OCHRE_FROGLIGHT = new SlimefunItemStack("WP_OCHRE_FROGLIGHT",
+            Material.OCHRE_FROGLIGHT,
+            "&3Wither-Proof Ochre Froglight",
+            "",
+            "&7Lights up your area, while resistant",
+            "&7against attacks from withers",
+            "",
+            "&9Suggested by Xanolok"
+    );
+
     public static final SlimefunItemStack ADVANCED_ELECTRIC_COMPOSTER = new SlimefunItemStack("ADVANCED_ELECTRIC_COMPOSTER",
             Material.RED_TERRACOTTA,
             "&cAdvanced Electric Composter",
