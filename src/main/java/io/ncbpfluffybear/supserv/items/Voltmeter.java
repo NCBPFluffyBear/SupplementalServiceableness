@@ -139,13 +139,13 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
         Utils.sendChatMsg(player, "&7========== &5Consumers &7==========");
         Utils.sendChatMsg(player, "");
         Utils.sendChatMsg(player, "&5Number of consumers: &7" + numberOfConsumers);
-        Utils.sendChatMsg(player, "&5Joules consumed: &7" + joulesPerSecConsumed + " J/s");
+        Utils.sendChatMsg(player, "&5Joules consumed: &7" + joulesPerSecConsumed + " J/t");
         Utils.sendChatMsg(player, "&5Smallest consumer: &7" +
                 (Objects.isNull(smallestConsumer) ? "None" : pretifyId(smallestConsumer.getId())) +
-                " &5with &7" + (Objects.isNull(smallestConsumer) ? "0" : minConsumption) + " J/s");
+                " &5with &7" + (Objects.isNull(smallestConsumer) ? "0" : minConsumption) + " J/t");
         Utils.sendChatMsg(player, "&5Largest consumer: &7" +
                 (Objects.isNull(largestConsumer) ? "None" : pretifyId(largestConsumer.getId())) +
-                " &5with &7" + maxConsumption + " J/s");
+                " &5with &7" + maxConsumption + " J/t");
         Utils.sendChatMsg(player, "");
         Utils.sendChatMsg(player, "&7===============================");
     }
@@ -267,13 +267,13 @@ public class Voltmeter extends SimpleSlimefunItem<ItemUseHandler> {
         Utils.sendChatMsg(player, "&7========== &5Generators &7==========");
         Utils.sendChatMsg(player, "");
         Utils.sendChatMsg(player, "&5Number of capacitors: &7" + numberOfGenerators);
-        Utils.sendChatMsg(player, "&5Generated output: &7" + joulesGeneratedPerSec + " J/s");
+        Utils.sendChatMsg(player, "&5Generated output: &7" + joulesGeneratedPerSec + " J/t");
         Utils.sendChatMsg(player, "&5Smallest generator: &7" +
                 (Objects.isNull(smallestGenerator) ? "None" : pretifyId(smallestGenerator.getId())) +
-                " &5with &7" + (Objects.isNull(smallestGenerator) ? "0" : minGeneration) + " J/s");
-        Utils.sendChatMsg(player, "&5Largest capacitor: &7" +
+                " &5with &7" + (Objects.isNull(smallestGenerator) ? "0" : minGeneration) + " J/t");
+        Utils.sendChatMsg(player, "&5Largest generator: &7" +
                 (Objects.isNull(largestGenerator) ? "None" : pretifyId(largestGenerator.getId())) +
-                " &5with &7" + maxGeneration + " J/s");
+                " &5with &7" + maxGeneration + " J/t");
         Utils.sendChatMsg(player, "");
         Utils.sendChatMsg(player, "&7===============================");
     }
