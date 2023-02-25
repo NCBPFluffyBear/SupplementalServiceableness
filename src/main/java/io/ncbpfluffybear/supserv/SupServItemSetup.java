@@ -249,7 +249,7 @@ public class SupServItemSetup {
 
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
                         new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)},
-                new ItemStack(Material.COBBLESTONE, 1)
+                new ItemStack(Material.COBBLESTONE, 9)
         );
 
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
