@@ -238,6 +238,16 @@ public class SupServItemSetup {
 
         // Grind Stone
         ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                        new ItemStack(Material.COBBLED_DEEPSLATE, 1)},
+                new ItemStack(Material.GRAVEL, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
+                        new ItemStack(Material.TUFF, 1)},
+                new ItemStack(Material.GRAVEL, 1)
+        );
+
+        ((MultiBlockMachine) SlimefunItems.GRIND_STONE.getItem()).addRecipe(new ItemStack[] {
                         new SlimefunItemStack(SupServItems.COMPRESSED_COBBLESTONE, 1)},
                 new ItemStack(Material.COBBLESTONE, 9)
         );

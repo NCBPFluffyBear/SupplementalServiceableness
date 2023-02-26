@@ -390,6 +390,8 @@ public class SupServItems {
     );
 
     static {
+
+        // Press Recipes
         addPressRecipe(3, new ItemStack(Material.COBBLESTONE, 9),
                 COMPRESSED_COBBLESTONE
         );
@@ -414,9 +416,22 @@ public class SupServItems {
         addPressRecipe(24, new SlimefunItemStack(SEPTUPLE_COMPRESSED_COBBLESTONE, 9),
                 OCTUPLE_COMPRESSED_COBBLESTONE
         );
+
+        // Ore Crusher Recipes
+        addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.RAW_COPPER_BLOCK, 1)},
+                new SlimefunItemStack(SlimefunItems.COPPER_DUST, 9)
+        );
+        addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.RAW_IRON_BLOCK, 1)},
+                new SlimefunItemStack(SlimefunItems.IRON_DUST, 9)
+        );
+        addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.RAW_GOLD_BLOCK, 1)},
+                new SlimefunItemStack(SlimefunItems.GOLD_DUST, 9)
+        );
         addOreCrusherRecipe(new ItemStack[]{new ItemStack(Material.STONE, 8)},
                 new ItemStack(Material.COBBLESTONE, 8)
         );
+
+        // Composter Recipes
         addComposterRecipe(new ItemStack(Material.SOUL_SOIL), new ItemStack(Material.SOUL_SAND));
     }
 
