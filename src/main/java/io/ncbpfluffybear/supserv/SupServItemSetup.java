@@ -148,13 +148,15 @@ public class SupServItemSetup {
                 }
         ).register(plugin);
 
-        new AdvancedElectricComposter(SupServItems.SUPSERV_CATEGORY, SupServItems.ADVANCED_ELECTRIC_COMPOSTER, RecipeType.ENHANCED_CRAFTING_TABLE,
-                new ItemStack[] {
-                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.NETHER_BRICK_SLAB),
-                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItem.getById("ELECTRIC_COMPOSTER_2").getItem(), new ItemStack(Material.NETHER_BRICK_SLAB),
-                        new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ADVANCED_CIRCUIT_BOARD, new ItemStack(Material.NETHER_BRICK_SLAB)
-                }
-        ).register(plugin);
+        if (plugin.getServer().getPluginManager().isPluginEnabled("ExoticGarden")) {
+            new AdvancedElectricComposter(SupServItems.SUPSERV_CATEGORY, SupServItems.ADVANCED_ELECTRIC_COMPOSTER, RecipeType.ENHANCED_CRAFTING_TABLE,
+                    new ItemStack[]{
+                            new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ELECTRIC_MOTOR, new ItemStack(Material.NETHER_BRICK_SLAB),
+                            new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItem.getById("ELECTRIC_COMPOSTER_2").getItem(), new ItemStack(Material.NETHER_BRICK_SLAB),
+                            new ItemStack(Material.NETHER_BRICK_SLAB), SlimefunItems.ADVANCED_CIRCUIT_BOARD, new ItemStack(Material.NETHER_BRICK_SLAB)
+                    }
+            ).register(plugin);
+        }
 
         new ExpGenerator(SupServItems.SUPSERV_CATEGORY, SupServItems.EXP_GENERATOR, RecipeType.ENHANCED_CRAFTING_TABLE,
                 new ItemStack[] {
